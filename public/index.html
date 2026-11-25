@@ -85,6 +85,53 @@ canvas#confetti{position:fixed;inset:0;pointer-events:none;z-index:40}
 .foot{font-size:12px;opacity:.6;text-align:center;margin:8px 0 0}
 .foot a{color:var(--ink)}
 img.prev{width:100%;max-height:200px;object-fit:cover;border-radius:18px;border:2.5px solid var(--ink);margin-top:10px}
+
+/* ---------- animations (disabled for users who prefer reduced motion) ---------- */
+.scanwrap{position:relative;overflow:hidden;border-radius:18px}
+.dots{display:inline-flex;gap:5px;vertical-align:middle}
+.dots i{width:9px;height:9px;border-radius:50%;background:var(--ink);display:block}
+.pillrun{display:flex;gap:6px;font-size:26px;margin-top:8px}
+.pillrun span{display:inline-block}
+.price .brand b{position:relative;display:inline-block}
+.price .brand b::after{content:"";position:absolute;left:-2px;right:-2px;top:52%;height:3px;background:var(--coral);border-radius:3px;transform-origin:left center}
+[dir=rtl] .price .brand b::after{transform-origin:right center}
+@media (prefers-reduced-motion:no-preference){
+ @keyframes rise{from{opacity:0;transform:translateY(18px) scale(.98)}to{opacity:1;transform:none}}
+ @keyframes pop{0%{transform:scale(.3);opacity:0}70%{transform:scale(1.2)}100%{transform:scale(1);opacity:1}}
+ @keyframes bob{50%{transform:translateY(-4px)}}
+ @keyframes floaty{50%{transform:translateY(-4px) rotate(-2deg)}}
+ @keyframes blink{0%,90%,100%{transform:scaleY(1)}94%{transform:scaleY(.08)}}
+ @keyframes cheer{0%{transform:translateY(0)}25%{transform:translateY(-16px) rotate(-10deg)}50%{transform:translateY(0) rotate(8deg)}75%{transform:translateY(-8px) rotate(-4deg)}100%{transform:none}}
+ @keyframes laser{from{top:-4px}to{top:100%}}
+ @keyframes dot{0%,80%,100%{transform:translateY(0);opacity:.35}40%{transform:translateY(-7px);opacity:1}}
+ @keyframes strike{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+ @keyframes nudge{50%{transform:translateX(5px)}}
+ @keyframes glow{0%,100%{box-shadow:0 3px 0 var(--ink),0 0 0 0 rgba(61,220,151,.0)}50%{box-shadow:0 3px 0 var(--ink),0 0 14px 4px rgba(61,220,151,.55)}}
+ @keyframes hopp{0%,100%{transform:translateY(0)}40%{transform:translateY(-12px)}}
+ section:not(.hide){animation:rise .4s cubic-bezier(.2,.9,.3,1.2) both}
+ .card,.big-btn,.bubble{animation:rise .5s cubic-bezier(.2,.9,.3,1.2) both}
+ .card:nth-child(2),.big-btn+.card{animation-delay:.06s}.card:nth-child(3){animation-delay:.12s}.card:nth-child(4){animation-delay:.18s}.card:nth-child(5){animation-delay:.24s}.card:nth-child(n+6){animation-delay:.3s}
+ #chat .bubble{animation:none}
+ #chat>div:nth-last-child(-n+2) .bubble{animation:rise .4s cubic-bezier(.2,.9,.3,1.2) both}
+ #mascot{animation:floaty 3.2s ease-in-out infinite}
+ #mascot .eye{transform-box:fill-box;transform-origin:center;animation:blink 4.5s infinite}
+ #mascot.cheer .body{animation:cheer .9s ease-out}
+ .slot.on span{animation:pop .5s both}
+ .slot.on:nth-child(2) span{animation-delay:.12s}.slot.on:nth-child(3) span{animation-delay:.24s}
+ .slot.on:nth-child(1) span{animation:pop .5s both,bob 2.6s 1s ease-in-out infinite}
+ .slot.on:nth-child(3) span{animation:pop .5s .24s both,bob 3s 1.2s ease-in-out infinite}
+ .price .brand b::after{animation:strike .5s .6s both ease-out}
+ .price .gen b{animation:pop .6s .9s both}
+ .price .arrow{animation:nudge 1.3s ease-in-out infinite}
+ .save{animation:glow 2.4s ease-in-out infinite}
+ .tab.on span{animation:pop .4s both}
+ .big-btn .ic{display:inline-block;animation:bob 2.2s ease-in-out infinite}
+ .btn,.tab,.big-btn{transition:transform .12s ease,box-shadow .12s ease}
+ .btn:hover{transform:translateY(-2px)}
+ .scanwrap.scanning::after{content:"";position:absolute;left:0;right:0;height:4px;background:linear-gradient(90deg,transparent,#3DDC97,transparent);box-shadow:0 0 18px 8px rgba(61,220,151,.55);animation:laser 1.5s ease-in-out infinite alternate}
+ .dots i{animation:dot 1.1s infinite}.dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}
+ .pillrun span{animation:hopp .9s infinite}.pillrun span:nth-child(2){animation-delay:.15s}.pillrun span:nth-child(3){animation-delay:.3s}
+}
 </style>
 </head>
 <body>
@@ -95,7 +142,7 @@ img.prev{width:100%;max-height:200px;object-fit:cover;border-radius:18px;border:
     <svg id="mascot" viewBox="0 0 100 100" aria-hidden="true"><g class="body">
       <rect x="30" y="8" width="40" height="84" rx="20" fill="#fff" stroke="#1F2547" stroke-width="4"/>
       <path d="M30 50V28a20 20 0 0 1 40 0v22z" fill="#01411C" stroke="#1F2547" stroke-width="4"/>
-      <circle cx="42" cy="58" r="3.6" fill="#1F2547"/><circle cx="58" cy="58" r="3.6" fill="#1F2547"/>
+      <circle class="eye" cx="42" cy="58" r="3.6" fill="#1F2547"/><circle class="eye" cx="58" cy="58" r="3.6" fill="#1F2547"/>
       <path id="mouth" d="M43 66q7 7 14 0" fill="none" stroke="#1F2547" stroke-width="3.5" stroke-linecap="round"/>
       <circle cx="37" cy="65" r="3" fill="#FF6B6B" opacity=".6"/><circle cx="63" cy="65" r="3" fill="#FF6B6B" opacity=".6"/>
     </g></svg>
@@ -111,7 +158,7 @@ img.prev{width:100%;max-height:200px;object-fit:cover;border-radius:18px;border:
     <input type="file" id="file" accept="image/*" capture="environment" class="hide">
     <div id="scanStatus" class="card hide" style="margin-top:16px">
       <div id="scanMsg"></div><div class="prog" id="progW"><i id="progBar"></i></div>
-      <img id="prev" class="prev hide" alt="">
+      <div class="scanwrap" id="scanwrap"><img id="prev" class="prev hide" alt=""></div>
     </div>
     <div class="card" style="margin-top:16px">
       <div class="muted" data-i="or" style="margin-bottom:8px"></div>
@@ -316,6 +363,7 @@ function explain(m){
 /* ---------- UI bits ---------- */
 let toastT; function toast(msg){const e=$('#toast');e.textContent=msg;e.classList.add('on');clearTimeout(toastT);toastT=setTimeout(()=>e.classList.remove('on'),2800)}
 function say(msg){$('#bubble').textContent=msg}
+function cheer(){const m=$('#mascot');m.classList.remove('cheer');void m.getBoundingClientRect();m.classList.add('cheer');setTimeout(()=>m.classList.remove('cheer'),950)}
 function medCard(m,inList){
   const has=mine.includes(m.id);
   return `<div class="card med" data-id="${esc(m.id)}" ${inList?'data-list="1"':''}>
@@ -338,7 +386,7 @@ document.addEventListener('click',e=>{
   const card=b.closest('[data-id]'), id=card.dataset.id, act=b.dataset.act;
   const m=card.dataset.list?medById(id):(reg[id]||medById(id));
   if(act==='listen'){ if(speaking){stopSpeak();b.textContent=t('listen')} else {b.textContent=t('stop');speak(explain(m),()=>b.textContent=t('listen'))} }
-  if(act==='add'){ if(!mine.includes(id))mine.push(id); custom[id]=m; store.set('custom',custom); saveMine(); confetti(40); b.textContent=t('added'); b.disabled=true; toast(`${nm(m)} → ${emojiFor(who)} ${who} ✓`); }
+  if(act==='add'){ if(!mine.includes(id))mine.push(id); custom[id]=m; store.set('custom',custom); saveMine(); confetti(40); cheer(); b.textContent=t('added'); b.disabled=true; toast(`${nm(m)} → ${emojiFor(who)} ${who} ✓`); }
   if(act==='remove'){ mine=mine.filter(x=>x!==id); saveMine(); renderMeds(); }
 });
 
@@ -353,13 +401,13 @@ $$('.tab').forEach(b=>b.onclick=()=>showTab(b.dataset.tab));
 
 /* ---------- scan ---------- */
 function showResult(list,raw,note){
-  const r=$('#result');
+  const r=$('#result'); $('#scanwrap').classList.remove('scanning');
   list.forEach(m=>{reg[m.id]=m});
   if(!list.length){r.innerHTML=`<div class="card">😕 ${t('none')}${raw?`<div class="muted" style="margin-top:8px" dir="ltr">${t('iRead')} ${esc(raw.slice(0,120))}</div>`:''}</div>`;say(t('none'));return}
   r.innerHTML=`<div class="card row"><b>👤 ${t('addingFor')}</b><select id="scanWho" style="font:inherit;font-weight:800;border:2.5px solid var(--ink);border-radius:14px;padding:6px 10px;background:var(--sun);color:var(--ink)">${people.map(p=>`<option value="${esc(p.id)}" ${p.id===cur?'selected':''}>${emojiFor(p.name)} ${esc(p.name)}</option>`).join('')}</select></div>
    <h3 style="margin:6px 4px 12px">${t('found')} ${list.length>1?list.length:''} 👇</h3>`+list.map(m=>medCard(m,false)).join('');
   $('#scanWho').onchange=e=>{setPerson(e.target.value);$$('#result [data-act=add]').forEach(b=>{const has=mine.includes(b.closest('[data-id]').dataset.id);b.disabled=has;b.textContent=has?t('added'):t('add')})};
-  say(`${nm(list[0])}${hasPrice(list[0])?' · '+t('generic')+' '+rs(list[0].gp):''}!`); confetti(30);
+  say(`${nm(list[0])}${hasPrice(list[0])?' · '+t('generic')+' '+rs(list[0].gp):''}!`); confetti(30); cheer();
   r.scrollIntoView({behavior:'smooth',block:'start'});
 }
 function runSearch(txt){ txt=(txt||'').trim(); if(txt)showResult(matchText(txt),''); }
@@ -397,7 +445,7 @@ $('#file').onchange=async e=>{
   $('#scanStatus').classList.remove('hide'); $('#result').innerHTML='';
   try{
     setProg(.05,cfg.ai?t('reading_ai'):t('loadOcr'),cfg.ai);
-    const {ocr,jpg,b64}=await prep(f); const im=$('#prev'); im.src=jpg; im.classList.remove('hide');
+    const {ocr,jpg,b64}=await prep(f); const im=$('#prev'); im.src=jpg; im.classList.remove('hide'); $('#scanwrap').classList.add('scanning');
     if(cfg.ai){
       try{ const data=await aiScan(b64); $('#scanStatus').classList.add('hide'); showResult(medsFromAI(data),'',data.note); return; }
       catch{ toast(t('aiFail')); }
@@ -405,7 +453,7 @@ $('#file').onchange=async e=>{
     setProg(.05,t('loadOcr'),false);
     const txt=await ocrScan(ocr); setProg(1,'✓'); setTimeout(()=>$('#scanStatus').classList.add('hide'),700);
     showResult(matchText(txt),txt);
-  }catch(err){ setProg(0,'⚠️ '+t('offline')); }
+  }catch(err){ $('#scanwrap').classList.remove('scanning'); setProg(0,'⚠️ '+t('offline')); }
 };
 
 /* ---------- my meds + safety + reminders ---------- */
@@ -446,7 +494,7 @@ const traceChips=tr=>[...new Set(tr||[])].map(x=>`<span class="chip ai">🔧 ${e
 const myMedsPayload=()=>mine.map(medById).filter(Boolean).map(m=>({name:nm(m),salt:m.salt,slots:m.slots,days:m.days,rx:m.rx?m.rx.freq:''}));
 let planText='';
 async function runPlan(){
-  const out=$('#planOut'); out.innerHTML=`<div class="card"><div>${t('planBusy')}</div><div class="prog ind"><i></i></div></div>`; say(t('planBusy'));
+  const out=$('#planOut'); out.innerHTML=`<div class="card"><div>${t('planBusy')}</div><div class="pillrun"><span>💊</span><span>🧪</span><span>💊</span></div></div>`; say(t('planBusy'));
   try{
     const r=await fetch('/api/plan',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({lang:UR()?'ur':'en',meds:myMedsPayload()})});
     if(!r.ok)throw new Error(r.status); const d=await r.json();
@@ -468,13 +516,13 @@ function renderChat(){
   if(!chatLog.length)box.innerHTML=`<div class="bubble" style="margin:0">${t('askHello')}</div>`;
   else box.innerHTML=chatLog.map((m,i)=>m.role==='user'
     ?`<div style="display:flex;justify-content:flex-end;margin:8px 0"><div class="bubble" style="margin:0;background:var(--sun);border-radius:20px 20px 6px 20px">${esc(m.text)}</div></div>`
-    :`<div style="margin:8px 0"><div class="bubble" style="margin:0 0 4px">${esc(m.text)}</div>${m.pending?'':`<div class="row">${traceChips(m.trace)}<button class="btn sun" data-say="${i}" style="padding:2px 10px">${t('listen')}</button></div>`}</div>`).join('');
+    :`<div style="margin:8px 0"><div class="bubble" style="margin:0 0 4px">${m.pending?'<span class="dots"><i></i><i></i><i></i></span> ':''}${esc(m.text)}</div>${m.pending?'':`<div class="row">${traceChips(m.trace)}<button class="btn sun" data-say="${i}" style="padding:2px 10px">${t('listen')}</button></div>`}</div>`).join('');
   $('#askChips').innerHTML=chatLog.length?'':['askQ1','askQ2','askQ3'].map(k=>`<span class="chip btn" data-q="${k}">${t(k)}</span>`).join('');
   box.scrollIntoView({block:'end'});
 }
 async function sendAsk(text){
   text=(text||$('#askIn').value).trim(); if(!text)return; $('#askIn').value='';
-  chatLog.push({role:'user',text}); chatLog.push({role:'assistant',text:'…'+t('thinking'),pending:1}); renderChat();
+  chatLog.push({role:'user',text}); chatLog.push({role:'assistant',text:t('thinking'),pending:1}); renderChat();
   try{
     const hist=chatLog.filter(m=>!m.pending).map(m=>({role:m.role,text:m.text}));
     const r=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({lang:UR()?'ur':'en',messages:hist,meds:myMedsPayload()})});
@@ -550,7 +598,7 @@ function renderSave(){
    <div class="card">${meds.filter(m=>courseSave(m)>0).map(m=>`<div style="margin-bottom:12px"><div class="row" style="justify-content:space-between"><b>${esc(nm(m))}</b><span dir="ltr">${rs(courseSave(m))}</span></div><div class="bar" style="width:${Math.max(6,courseSave(m)/mx*100)}%"></div></div>`).join('')}</div>
    <button class="big-btn" id="shareBtn" style="background:var(--sun)"><span class="ic">📤</span><span><b>${t('shareBtn')}</b></span></button>
    <div class="card" style="margin-top:16px"><h3>${t('adoptT')}</h3><p>${t('adoptD')}</p></div>`;
-  countUp($('#cnt'),course); confetti(80); say(`${rs(course)} 🎉`);
+  countUp($('#cnt'),course); coins(34); confetti(40); cheer(); say(`${rs(course)} 🎉`);
   $('#shareBtn').onclick=()=>shareCard(course,year);
 }
 function countUp(el,to){const t0=performance.now();(function f(n){const p=Math.min(1,(n-t0)/1100);el.textContent=Math.round(to*(1-Math.pow(1-p,3))).toLocaleString('en-IN');if(p<1)requestAnimationFrame(f)})(t0)}
@@ -595,8 +643,9 @@ function fit(){cv.width=innerWidth;cv.height=innerHeight} fit(); addEventListene
 function confetti(n=60){const cols=['#3DDC97','#01411C','#FFD23F','#6EC6FF','#B79CFF'];
   for(let i=0;i<n;i++)parts.push({x:innerWidth/2,y:innerHeight*.45,vx:(Math.random()-.5)*14,vy:-Math.random()*13-3,r:Math.random()*6+4,c:cols[i%5],a:Math.random()*6,life:90});
   if(!raf)loop()}
+function coins(n=30){for(let i=0;i<n;i++)parts.push({x:Math.random()*innerWidth,y:-20-Math.random()*innerHeight*.5,vx:(Math.random()-.5)*1.5,vy:2+Math.random()*3,r:8+Math.random()*5,c:'#FFD23F',a:Math.random()*6,life:170,e:'🪙'}); if(!raf)loop()}
 function loop(){cx.clearRect(0,0,cv.width,cv.height);parts=parts.filter(p=>p.life>0);
-  for(const p of parts){p.vy+=.45;p.x+=p.vx;p.y+=p.vy;p.a+=.2;p.life--;cx.save();cx.translate(p.x,p.y);cx.rotate(p.a);cx.fillStyle=p.c;cx.globalAlpha=Math.min(1,p.life/30);cx.fillRect(-p.r,-p.r/2,p.r*2,p.r);cx.restore()}
+  for(const p of parts){p.vy+=.45;p.x+=p.vx;p.y+=p.vy;p.a+=.2;p.life--;cx.save();cx.translate(p.x,p.y);cx.rotate(p.a);cx.fillStyle=p.c;cx.globalAlpha=Math.min(1,p.life/30); if(p.e){cx.font=(p.r*2.4)+'px serif';cx.textAlign='center';cx.textBaseline='middle';cx.fillText(p.e,0,0)}else cx.fillRect(-p.r,-p.r/2,p.r*2,p.r); cx.restore()}
   raf=parts.length?requestAnimationFrame(loop):0; if(!raf)cx.clearRect(0,0,cv.width,cv.height)}
 
 /* ---------- language + init ---------- */

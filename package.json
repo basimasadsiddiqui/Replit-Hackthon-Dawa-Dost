@@ -6,7 +6,8 @@
   "description": "Dawa Dost - Pakistani medicine friend: scan a strip or prescription, get cheaper generics, Urdu voice, reminders.",
   "scripts": {
     "start": "node server.js",
-    "dev": "node --env-file=.env server.js"
+    "dev": "node --env-file=.env server.js",
+    "test": "node --test tests/server.test.mjs"
   },
   "engines": { "node": ">=20" },
   "dependencies": { "express": "^4.21.2" }
