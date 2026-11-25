@@ -1,0 +1,821 @@
+[
+ {
+  "id": "panadol",
+  "brands": [
+   "panadol",
+   "calpol",
+   "paracetamol"
+  ],
+  "salt": "Paracetamol",
+  "str": "500 mg",
+  "bp": 38,
+  "gp": 15,
+  "n": 10,
+  "slots": [
+   "morning",
+   "noon",
+   "night"
+  ],
+  "food": "after",
+  "days": 3,
+  "tags": [
+   "paracetamol"
+  ],
+  "use": [
+   "fever and body pain",
+   "بخار اور جسم درد"
+  ],
+  "how": [
+   "No more than 8 tablets of 500 mg in 24 hours.",
+   "24 گھنٹے میں 500 ملی گرام کی 8 سے زیادہ گولیاں نہ لیں۔"
+  ],
+  "warn": [
+   "Do not combine with other paracetamol medicines (e.g. Panadol Extra).",
+   "پیراسیٹامول والی دوسری دوا (جیسے پینا ڈول ایکسٹرا) ساتھ نہ لیں۔"
+  ]
+ },
+ {
+  "id": "panx",
+  "brands": [
+   "panadol extra",
+   "panadol advance"
+  ],
+  "salt": "Paracetamol + Caffeine",
+  "str": "500/65 mg",
+  "bp": 75,
+  "gp": 36,
+  "n": 12,
+  "slots": [
+   "morning",
+   "night"
+  ],
+  "food": "after",
+  "days": 3,
+  "tags": [
+   "paracetamol"
+  ],
+  "use": [
+   "headache and pain",
+   "سر درد اور درد"
+  ],
+  "how": [
+   "Take with water after food.",
+   "کھانے کے بعد پانی کے ساتھ لیں۔"
+  ],
+  "warn": [
+   "Has caffeine, may disturb sleep. No other paracetamol with it.",
+   "اس میں کیفین ہے، نیند متاثر ہو سکتی ہے۔ ساتھ کوئی اور پیراسیٹامول نہ لیں۔"
+  ]
+ },
+ {
+  "id": "augm",
+  "brands": [
+   "augmentin 625",
+   "augmentin",
+   "amoxiclav",
+   "co-amoxiclav",
+   "clavulin"
+  ],
+  "salt": "Amoxicillin + Clavulanic acid",
+  "str": "625 mg",
+  "bp": 1100,
+  "gp": 650,
+  "n": 14,
+  "slots": [
+   "morning",
+   "night"
+  ],
+  "food": "after",
+  "days": 7,
+  "tags": [
+   "antibiotic"
+  ],
+  "use": [
+   "bacterial infection",
+   "بیکٹیریا کا انفیکشن"
+  ],
+  "how": [
+   "Finish the full course even if you feel better.",
+   "آرام آ جائے تب بھی پورا کورس مکمل کریں۔"
+  ],
+  "warn": [
+   "Stop and see a doctor if rash or swelling appears.",
+   "دانے یا سوجن ہو تو دوا بند کر کے ڈاکٹر کو دکھائیں۔"
+  ]
+ },
+ {
+  "id": "amox",
+  "brands": [
+   "amoxil",
+   "amoxicillin",
+   "flemoxin"
+  ],
+  "salt": "Amoxicillin",
+  "str": "500 mg",
+  "bp": 480,
+  "gp": 240,
+  "n": 12,
+  "slots": [
+   "morning",
+   "noon",
+   "night"
+  ],
+  "food": "any",
+  "days": 5,
+  "tags": [
+   "antibiotic"
+  ],
+  "use": [
+   "infection (throat, chest, ear)",
+   "انفیکشن (گلا، سینہ، کان)"
+  ],
+  "how": [
+   "Finish the full course.",
+   "پورا کورس مکمل کریں۔"
+  ],
+  "warn": [
+   "Do not take if allergic to penicillin.",
+   "پینسلین سے الرجی ہو تو نہ لیں۔"
+  ]
+ },
+ {
+  "id": "azith",
+  "brands": [
+   "azomax",
+   "zithromax",
+   "azithromycin",
+   "azee"
+  ],
+  "salt": "Azithromycin",
+  "str": "500 mg",
+  "bp": 650,
+  "gp": 250,
+  "n": 3,
+  "slots": [
+   "morning"
+  ],
+  "food": "any",
+  "days": 3,
+  "tags": [
+   "antibiotic"
+  ],
+  "use": [
+   "bacterial infection",
+   "بیکٹیریا کا انفیکشن"
+  ],
+  "how": [
+   "Once a day for 3 days.",
+   "دن میں ایک بار، 3 دن تک۔"
+  ],
+  "warn": [
+   "Finish the course. Tell the doctor if you have heart problems.",
+   "کورس پورا کریں۔ دل کا مسئلہ ہو تو ڈاکٹر کو بتائیں۔"
+  ]
+ },
+ {
+  "id": "cefix",
+  "brands": [
+   "cefspan",
+   "cefixime",
+   "cefim"
+  ],
+  "salt": "Cefixime",
+  "str": "400 mg",
+  "bp": 750,
+  "gp": 400,
+  "n": 5,
+  "slots": [
+   "morning"
+  ],
+  "food": "any",
+  "days": 5,
+  "tags": [
+   "antibiotic"
+  ],
+  "use": [
+   "urinary or chest infection",
+   "پیشاب یا سینے کا انفیکشن"
+  ],
+  "how": [
+   "One capsule a day.",
+   "دن میں ایک کیپسول۔"
+  ],
+  "warn": [
+   "Finish the course. Report severe diarrhoea.",
+   "کورس پورا کریں۔ شدید دست ہوں تو بتائیں۔"
+  ]
+ },
+ {
+  "id": "cipro",
+  "brands": [
+   "novidat",
+   "ciproxin",
+   "ciprofloxacin",
+   "cifran"
+  ],
+  "salt": "Ciprofloxacin",
+  "str": "500 mg",
+  "bp": 330,
+  "gp": 160,
+  "n": 10,
+  "slots": [
+   "morning",
+   "night"
+  ],
+  "food": "after",
+  "days": 5,
+  "tags": [
+   "quinolone",
+   "antibiotic"
+  ],
+  "use": [
+   "bacterial infection",
+   "بیکٹیریا کا انفیکشن"
+  ],
+  "how": [
+   "Finish the full course.",
+   "پورا کورس مکمل کریں۔"
+  ],
+  "warn": [
+   "Not with milk or calcium. Stop if tendon pain.",
+   "دودھ یا کیلشیم کے ساتھ نہ لیں۔ پٹھوں کی نس میں درد ہو تو بند کریں۔"
+  ]
+ },
+ {
+  "id": "metro",
+  "brands": [
+   "flagyl",
+   "metronidazole",
+   "metrogyl"
+  ],
+  "salt": "Metronidazole",
+  "str": "400 mg",
+  "bp": 130,
+  "gp": 50,
+  "n": 20,
+  "slots": [
+   "morning",
+   "noon",
+   "night"
+  ],
+  "food": "after",
+  "days": 5,
+  "tags": [
+   "metronidazole",
+   "antibiotic"
+  ],
+  "use": [
+   "stomach infection, loose motions",
+   "پیٹ کا انفیکشن، دست"
+  ],
+  "how": [
+   "Take after food.",
+   "کھانے کے بعد لیں۔"
+  ],
+  "warn": [
+   "No alcohol during the course and for 2 days after.",
+   "کورس میں اور 2 دن بعد تک شراب بالکل نہیں۔"
+  ]
+ },
+ {
+  "id": "omep",
+  "brands": [
+   "risek",
+   "omeprazole",
+   "losec"
+  ],
+  "salt": "Omeprazole",
+  "str": "20 mg",
+  "bp": 330,
+  "gp": 140,
+  "n": 14,
+  "slots": [
+   "morning"
+  ],
+  "food": "before",
+  "days": 14,
+  "tags": [
+   "ppi"
+  ],
+  "use": [
+   "acidity and gas",
+   "تیزابیت اور گیس"
+  ],
+  "how": [
+   "Take 30 minutes before breakfast.",
+   "ناشتے سے 30 منٹ پہلے لیں۔"
+  ],
+  "warn": [
+   "If pain lasts over 2 weeks, see a doctor.",
+   "2 ہفتے سے زیادہ درد رہے تو ڈاکٹر کو دکھائیں۔"
+  ]
+ },
+ {
+  "id": "esom",
+  "brands": [
+   "nexium",
+   "esomeprazole",
+   "esomep"
+  ],
+  "salt": "Esomeprazole",
+  "str": "40 mg",
+  "bp": 1250,
+  "gp": 450,
+  "n": 14,
+  "slots": [
+   "morning"
+  ],
+  "food": "before",
+  "days": 14,
+  "tags": [
+   "ppi"
+  ],
+  "use": [
+   "acidity and reflux",
+   "تیزابیت اور سینے کی جلن"
+  ],
+  "how": [
+   "Take 30 minutes before breakfast.",
+   "ناشتے سے 30 منٹ پہلے لیں۔"
+  ],
+  "warn": [
+   "Do not use for months without asking a doctor.",
+   "ڈاکٹر سے پوچھے بغیر مہینوں تک نہ لیں۔"
+  ]
+ },
+ {
+  "id": "domp",
+  "brands": [
+   "motilium",
+   "domperidone"
+  ],
+  "salt": "Domperidone",
+  "str": "10 mg",
+  "bp": 400,
+  "gp": 150,
+  "n": 30,
+  "slots": [
+   "morning",
+   "noon",
+   "night"
+  ],
+  "food": "before",
+  "days": 5,
+  "tags": [],
+  "use": [
+   "vomiting and nausea",
+   "قے اور متلی"
+  ],
+  "how": [
+   "Take 15 minutes before food.",
+   "کھانے سے 15 منٹ پہلے لیں۔"
+  ],
+  "warn": [
+   "Ask a doctor first if you have heart disease.",
+   "دل کی بیماری ہو تو پہلے ڈاکٹر سے پوچھیں۔"
+  ]
+ },
+ {
+  "id": "metf",
+  "brands": [
+   "glucophage",
+   "metformin",
+   "glycomet"
+  ],
+  "salt": "Metformin",
+  "str": "500 mg",
+  "bp": 100,
+  "gp": 45,
+  "n": 20,
+  "slots": [
+   "morning",
+   "night"
+  ],
+  "food": "after",
+  "days": 30,
+  "chronic": 1,
+  "tags": [
+   "diabetes"
+  ],
+  "use": [
+   "diabetes (sugar)",
+   "شوگر (ذیابیطس)"
+  ],
+  "how": [
+   "Take with or after meals.",
+   "کھانے کے ساتھ یا بعد میں لیں۔"
+  ],
+  "warn": [
+   "Do not skip meals. Check sugar regularly.",
+   "کھانا نہ چھوڑیں۔ شوگر چیک کراتے رہیں۔"
+  ]
+ },
+ {
+  "id": "amlo",
+  "brands": [
+   "norvasc",
+   "amlodipine",
+   "amlodac"
+  ],
+  "salt": "Amlodipine",
+  "str": "5 mg",
+  "bp": 480,
+  "gp": 120,
+  "n": 14,
+  "slots": [
+   "morning"
+  ],
+  "food": "any",
+  "days": 30,
+  "chronic": 1,
+  "tags": [
+   "bp"
+  ],
+  "use": [
+   "high blood pressure",
+   "بلڈ پریشر"
+  ],
+  "how": [
+   "Same time every day.",
+   "روز ایک ہی وقت پر لیں۔"
+  ],
+  "warn": [
+   "Never stop on your own. Check BP regularly.",
+   "خود سے بند نہ کریں۔ بی پی چیک کراتے رہیں۔"
+  ]
+ },
+ {
+  "id": "biso",
+  "brands": [
+   "concor",
+   "bisoprolol"
+  ],
+  "salt": "Bisoprolol",
+  "str": "5 mg",
+  "bp": 400,
+  "gp": 150,
+  "n": 20,
+  "slots": [
+   "morning"
+  ],
+  "food": "any",
+  "days": 30,
+  "chronic": 1,
+  "tags": [
+   "bp"
+  ],
+  "use": [
+   "blood pressure and heart",
+   "بلڈ پریشر اور دل"
+  ],
+  "how": [
+   "Once a day in the morning.",
+   "دن میں ایک بار صبح لیں۔"
+  ],
+  "warn": [
+   "Never stop on your own. Report a very slow pulse.",
+   "خود سے بند نہ کریں۔ نبض بہت کم ہو تو بتائیں۔"
+  ]
+ },
+ {
+  "id": "telm",
+  "brands": [
+   "micardis",
+   "telmisartan"
+  ],
+  "salt": "Telmisartan",
+  "str": "40 mg",
+  "bp": 1000,
+  "gp": 300,
+  "n": 14,
+  "slots": [
+   "morning"
+  ],
+  "food": "any",
+  "days": 30,
+  "chronic": 1,
+  "tags": [
+   "bp"
+  ],
+  "use": [
+   "high blood pressure",
+   "بلڈ پریشر"
+  ],
+  "how": [
+   "Once a day.",
+   "دن میں ایک بار۔"
+  ],
+  "warn": [
+   "Never stop on your own. Not in pregnancy.",
+   "خود سے بند نہ کریں۔ حمل میں نہ لیں۔"
+  ]
+ },
+ {
+  "id": "ator",
+  "brands": [
+   "lipitor",
+   "atorvastatin",
+   "atorva"
+  ],
+  "salt": "Atorvastatin",
+  "str": "10 mg",
+  "bp": 900,
+  "gp": 250,
+  "n": 14,
+  "slots": [
+   "night"
+  ],
+  "food": "any",
+  "days": 30,
+  "chronic": 1,
+  "tags": [
+   "statin"
+  ],
+  "use": [
+   "high cholesterol",
+   "کولیسٹرول"
+  ],
+  "how": [
+   "Take at night.",
+   "رات کو لیں۔"
+  ],
+  "warn": [
+   "Report severe muscle pain to the doctor.",
+   "پٹھوں میں شدید درد ہو تو ڈاکٹر کو بتائیں۔"
+  ]
+ },
+ {
+  "id": "cet",
+  "brands": [
+   "zyrtec",
+   "cetirizine",
+   "cetzine"
+  ],
+  "salt": "Cetirizine",
+  "str": "10 mg",
+  "bp": 170,
+  "gp": 40,
+  "n": 10,
+  "slots": [
+   "night"
+  ],
+  "food": "any",
+  "days": 5,
+  "tags": [
+   "antihist"
+  ],
+  "use": [
+   "allergy, cold and itching",
+   "الرجی، زکام اور خارش"
+  ],
+  "how": [
+   "One tablet at night.",
+   "رات کو ایک گولی۔"
+  ],
+  "warn": [
+   "Can make you sleepy. Do not drive.",
+   "نیند آ سکتی ہے۔ گاڑی نہ چلائیں۔"
+  ]
+ },
+ {
+  "id": "ibu",
+  "brands": [
+   "brufen",
+   "ibuprofen"
+  ],
+  "salt": "Ibuprofen",
+  "str": "400 mg",
+  "bp": 170,
+  "gp": 80,
+  "n": 20,
+  "slots": [
+   "morning",
+   "night"
+  ],
+  "food": "after",
+  "days": 3,
+  "tags": [
+   "nsaid"
+  ],
+  "use": [
+   "pain and swelling",
+   "درد اور سوجن"
+  ],
+  "how": [
+   "Always after food.",
+   "ہمیشہ کھانے کے بعد لیں۔"
+  ],
+  "warn": [
+   "Not for long use. Avoid with stomach ulcer.",
+   "زیادہ دن نہ لیں۔ معدے کا السر ہو تو نہ لیں۔"
+  ]
+ },
+ {
+  "id": "pons",
+  "brands": [
+   "ponstan",
+   "mefenamic"
+  ],
+  "salt": "Mefenamic acid",
+  "str": "500 mg",
+  "bp": 280,
+  "gp": 100,
+  "n": 20,
+  "slots": [
+   "morning",
+   "noon",
+   "night"
+  ],
+  "food": "after",
+  "days": 3,
+  "tags": [
+   "nsaid"
+  ],
+  "use": [
+   "pain, including period pain",
+   "درد، بشمول ماہواری کا درد"
+  ],
+  "how": [
+   "Always after food.",
+   "ہمیشہ کھانے کے بعد لیں۔"
+  ],
+  "warn": [
+   "Not for long use. Avoid with stomach ulcer or kidney problems.",
+   "زیادہ دن نہ لیں۔ معدے کا السر یا گردے کا مسئلہ ہو تو نہ لیں۔"
+  ]
+ },
+ {
+  "id": "dicl",
+  "brands": [
+   "voltral",
+   "voren",
+   "diclofenac",
+   "cataflam"
+  ],
+  "salt": "Diclofenac",
+  "str": "50 mg",
+  "bp": 250,
+  "gp": 100,
+  "n": 20,
+  "slots": [
+   "morning",
+   "night"
+  ],
+  "food": "after",
+  "days": 5,
+  "tags": [
+   "nsaid"
+  ],
+  "use": [
+   "joint and muscle pain",
+   "جوڑوں اور پٹھوں کا درد"
+  ],
+  "how": [
+   "Always after food.",
+   "ہمیشہ کھانے کے بعد لیں۔"
+  ],
+  "warn": [
+   "Not for long use. Avoid with heart or stomach problems.",
+   "زیادہ دن نہ لیں۔ دل یا معدے کا مسئلہ ہو تو احتیاط کریں۔"
+  ]
+ },
+ {
+  "id": "asp",
+  "brands": [
+   "cardiprin",
+   "disprin",
+   "aspirin",
+   "ecosprin"
+  ],
+  "salt": "Aspirin",
+  "str": "100 mg",
+  "bp": 160,
+  "gp": 60,
+  "n": 30,
+  "slots": [
+   "night"
+  ],
+  "food": "after",
+  "days": 30,
+  "chronic": 1,
+  "tags": [
+   "nsaid",
+   "aspirin"
+  ],
+  "use": [
+   "heart protection (blood thinner)",
+   "دل کی حفاظت (خون پتلا)"
+  ],
+  "how": [
+   "Take after food.",
+   "کھانے کے بعد لیں۔"
+  ],
+  "warn": [
+   "Report black stools or bleeding at once.",
+   "کالا پاخانہ یا خون بہے تو فوراً بتائیں۔"
+  ]
+ },
+ {
+  "id": "calc",
+  "brands": [
+   "caltrate",
+   "calcium sandoz",
+   "osteocare",
+   "calcium"
+  ],
+  "salt": "Calcium + Vitamin D3",
+  "str": "600 mg",
+  "bp": 1100,
+  "gp": 450,
+  "n": 30,
+  "slots": [
+   "morning"
+  ],
+  "food": "after",
+  "days": 30,
+  "chronic": 1,
+  "tags": [
+   "calcium"
+  ],
+  "use": [
+   "weak bones",
+   "کمزور ہڈیاں"
+  ],
+  "how": [
+   "Take after breakfast.",
+   "ناشتے کے بعد لیں۔"
+  ],
+  "warn": [
+   "Keep a gap from some antibiotics and thyroid medicine.",
+   "کچھ اینٹی بائیوٹکس اور تھائرائیڈ کی دوا سے وقفہ رکھیں۔"
+  ]
+ },
+ {
+  "id": "surb",
+  "brands": [
+   "surbex z",
+   "surbex",
+   "becosules",
+   "neurobion"
+  ],
+  "salt": "Vitamin B-complex + Zinc",
+  "str": "tablet",
+  "bp": 330,
+  "gp": 130,
+  "n": 30,
+  "slots": [
+   "morning"
+  ],
+  "food": "after",
+  "days": 30,
+  "chronic": 1,
+  "tags": [],
+  "use": [
+   "weakness and tingling",
+   "کمزوری اور جھنجھناہٹ"
+  ],
+  "how": [
+   "One tablet after breakfast.",
+   "ناشتے کے بعد ایک گولی۔"
+  ],
+  "warn": [
+   "Urine may turn bright yellow. This is normal.",
+   "پیشاب گہرا پیلا ہو سکتا ہے۔ یہ عام بات ہے۔"
+  ]
+ },
+ {
+  "id": "levo",
+  "brands": [
+   "eltroxin",
+   "euthyrox",
+   "thyroxine",
+   "levothyroxine"
+  ],
+  "salt": "Levothyroxine",
+  "str": "50 mcg",
+  "bp": 480,
+  "gp": 300,
+  "n": 100,
+  "slots": [
+   "morning"
+  ],
+  "food": "empty",
+  "days": 30,
+  "chronic": 1,
+  "tags": [
+   "levothyroxine"
+  ],
+  "use": [
+   "thyroid",
+   "تھائرائیڈ"
+  ],
+  "how": [
+   "First thing in the morning with water.",
+   "صبح سب سے پہلے پانی کے ساتھ لیں۔"
+  ],
+  "warn": [
+   "Wait 30 minutes before eating.",
+   "کھانے سے پہلے 30 منٹ رکیں۔"
+  ]
+ }
+]

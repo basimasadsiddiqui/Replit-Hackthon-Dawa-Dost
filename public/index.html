@@ -1,0 +1,617 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dawa Dost · دوا دوست</title>
+<meta name="theme-color" content="#FFF8EE">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Nunito:wght@600;700;800&family=Noto+Nastaliq+Urdu:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FFF8EE;--ink:#1F2547;--mint:#3DDC97;--coral:#FF6B6B;--sun:#FFD23F;--sky:#6EC6FF;--lav:#B79CFF;--card:#fff;--pk:#01411C}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:'Nunito',system-ui,sans-serif;font-weight:700}
+body{min-height:100vh;padding-bottom:96px;background-image:radial-gradient(circle at 12% 8%,#ffe9b8 0,transparent 32%),radial-gradient(circle at 92% 20%,#d9f7e8 0,transparent 30%)}
+h1,h2,h3{font-family:'Fredoka',sans-serif;margin:0}
+html[lang=ur] body,html[lang=ur] .btn,html[lang=ur] input,html[lang=ur] .tab,html[lang=ur] .big-btn,html[lang=ur] .lang{font-family:'Noto Nastaliq Urdu','Nunito',serif}
+html[lang=ur] body{line-height:2.15}
+html[lang=ur] h1,html[lang=ur] h2,html[lang=ur] h3,html[lang=ur] .save,html[lang=ur] .big-btn b{font-family:'Noto Nastaliq Urdu','Fredoka',serif;line-height:2}
+html[lang=ur] .huge,html[lang=ur] .price b,html[lang=ur] .tab span{font-family:'Fredoka',sans-serif}
+html[lang=ur] .btn,html[lang=ur] .tab,html[lang=ur] .lang{line-height:1.9}
+.wrap{max-width:560px;margin:0 auto;padding:16px}
+.flag{height:6px;background:linear-gradient(90deg,var(--pk) 0 25%,#fff 25% 100%);border-bottom:2px solid var(--ink)}
+header{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+header h1{font-size:28px;line-height:1.2}
+header small{display:block;font-weight:700;opacity:.65;font-size:13px;line-height:1.5}
+.lang{margin-inline-start:auto;border:2.5px solid var(--ink);background:var(--sun);border-radius:99px;padding:8px 14px;font:inherit;font-weight:800;cursor:pointer;box-shadow:0 3px 0 var(--ink);color:var(--ink)}
+.lang:active{transform:translateY(3px);box-shadow:none}
+#mascot{width:62px;height:62px;flex:none}
+#mascot .body{transform-origin:50% 90%}
+#mascot.speaking .body{animation:hop .45s ease-in-out infinite}
+@keyframes hop{50%{transform:translateY(-7px) rotate(4deg)}}
+.bubble{background:#fff;border:2.5px solid var(--ink);border-radius:20px 20px 20px 6px;padding:8px 14px;margin:0 0 14px;font-size:15px;box-shadow:0 4px 0 var(--ink)}
+[dir=rtl] .bubble{border-radius:20px 20px 6px 20px}
+.card{background:var(--card);border:2.5px solid var(--ink);border-radius:26px;padding:16px;margin-bottom:16px;box-shadow:0 5px 0 var(--ink)}
+.big-btn{display:flex;align-items:center;gap:14px;width:100%;text-align:start;background:var(--mint);border:2.5px solid var(--ink);border-radius:26px;padding:18px;font:inherit;color:var(--ink);cursor:pointer;box-shadow:0 5px 0 var(--ink);transition:.1s}
+.big-btn:active{transform:translateY(5px);box-shadow:none}
+.big-btn .ic{font-size:40px}
+.big-btn b{font-family:'Fredoka';font-size:21px;display:block}
+.btn{border:2.5px solid var(--ink);background:var(--sky);border-radius:16px;padding:10px 14px;font:inherit;font-weight:800;color:var(--ink);cursor:pointer;box-shadow:0 3px 0 var(--ink)}
+.btn:active{transform:translateY(3px);box-shadow:none}
+.btn[disabled]{opacity:.6}
+.btn.coral{background:var(--coral)}.btn.sun{background:var(--sun)}.btn.mint{background:var(--mint)}.btn.lav{background:var(--lav)}.btn.ghost{background:#fff}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+input[type=text],input[type=time]{font:inherit;border:2.5px solid var(--ink);border-radius:16px;padding:11px 14px;background:#fff;color:var(--ink);min-width:0}
+input[type=text]{flex:1}
+.chip{display:inline-block;border:2px solid var(--ink);border-radius:99px;padding:1px 10px;font-size:13px;background:#fff;margin:0 0 6px 6px}
+[dir=rtl] .chip{margin:0 0 6px 6px}
+.chip.btn{padding:4px 12px;cursor:pointer;box-shadow:0 2px 0 var(--ink)}
+.chip.ai{background:var(--lav)}
+.muted{opacity:.65;font-size:13px}
+.hide{display:none!important}
+.tabs{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:2.5px solid var(--ink);display:flex;justify-content:center;gap:6px;padding:8px 10px calc(8px + env(safe-area-inset-bottom));z-index:20}
+.tab{flex:1;max-width:130px;border:2.5px solid transparent;border-radius:18px;background:none;font:inherit;font-weight:800;color:var(--ink);padding:4px;cursor:pointer;display:flex;flex-direction:column;align-items:center;font-size:13px;gap:0}
+.tab span{font-size:22px;line-height:1.3}
+.tab i{font-style:normal}
+.tab.on{background:var(--sun);border-color:var(--ink);box-shadow:0 3px 0 var(--ink)}
+.med h3{font-size:22px}
+.med .top{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}
+.slots{display:flex;gap:8px;margin:10px 0}
+.slot{flex:1;text-align:center;border:2.5px dashed #c9c9d6;border-radius:16px;padding:8px 2px;opacity:.45;font-size:13px}
+.slot span{font-size:26px;display:block;line-height:1.4}
+.slot.on{opacity:1;border:2.5px solid var(--ink);background:#fff7cf}
+.price{display:flex;align-items:center;gap:10px;margin:8px 0}
+.price .p{flex:1;border:2.5px solid var(--ink);border-radius:16px;padding:8px;text-align:center}
+.price .p b{font-family:'Fredoka';font-size:20px;display:block;line-height:1.5}
+.price .brand{background:#ffe0e0}.price .gen{background:#d9f7e8}
+[dir=rtl] .arrow{transform:scaleX(-1)}
+.save{font-family:'Fredoka';background:var(--mint);border:2.5px solid var(--ink);border-radius:99px;padding:2px 12px;white-space:nowrap}
+.warn{background:#fff0f0;border:2px solid var(--coral);border-radius:14px;padding:6px 10px;font-size:14px;margin:8px 0}
+.rx{background:#f1eaff;border:2px solid var(--lav);border-radius:14px;padding:6px 10px;font-size:14px;margin:8px 0}
+.alert{border-radius:16px;padding:8px 12px;margin:8px 0;border:2.5px solid var(--ink);font-size:14px}
+.alert.bad{background:#ffe0e0}.alert.ok{background:#d9f7e8}
+.prog{height:14px;border:2.5px solid var(--ink);border-radius:99px;overflow:hidden;background:#fff;margin:10px 0}
+.prog i{display:block;height:100%;width:0;background:var(--mint);transition:width .2s}
+.prog.ind i{width:40%;animation:ind 1.1s ease-in-out infinite alternate}
+@keyframes ind{from{margin-inline-start:0}to{margin-inline-start:60%}}
+.huge{font-family:'Fredoka';font-size:60px;line-height:1.1}
+.bar{height:12px;border-radius:99px;background:var(--mint);border:2px solid var(--ink)}
+.toast{position:fixed;left:50%;bottom:104px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;border-radius:22px;padding:8px 20px;opacity:0;transition:.25s;z-index:50;max-width:92vw;text-align:center;pointer-events:none}
+.toast.on{opacity:1;transform:translateX(-50%)}
+.chk{display:flex;gap:10px;align-items:center;padding:4px 0;font-size:16px}
+.chk input{width:24px;height:24px;accent-color:var(--coral)}
+a.btn{text-decoration:none;display:inline-block;text-align:center}
+canvas#confetti{position:fixed;inset:0;pointer-events:none;z-index:40}
+.foot{font-size:12px;opacity:.6;text-align:center;margin:8px 0 0}
+.foot a{color:var(--ink)}
+img.prev{width:100%;max-height:200px;object-fit:cover;border-radius:18px;border:2.5px solid var(--ink);margin-top:10px}
+</style>
+</head>
+<body>
+<div class="flag"></div>
+<canvas id="confetti"></canvas>
+<div class="wrap">
+  <header>
+    <svg id="mascot" viewBox="0 0 100 100" aria-hidden="true"><g class="body">
+      <rect x="30" y="8" width="40" height="84" rx="20" fill="#fff" stroke="#1F2547" stroke-width="4"/>
+      <path d="M30 50V28a20 20 0 0 1 40 0v22z" fill="#01411C" stroke="#1F2547" stroke-width="4"/>
+      <circle cx="42" cy="58" r="3.6" fill="#1F2547"/><circle cx="58" cy="58" r="3.6" fill="#1F2547"/>
+      <path id="mouth" d="M43 66q7 7 14 0" fill="none" stroke="#1F2547" stroke-width="3.5" stroke-linecap="round"/>
+      <circle cx="37" cy="65" r="3" fill="#FF6B6B" opacity=".6"/><circle cx="63" cy="65" r="3" fill="#FF6B6B" opacity=".6"/>
+    </g></svg>
+    <div><h1>Dawa Dost <span style="font-size:22px">دوا دوست</span></h1><small data-i="tag"></small></div>
+    <button class="lang" id="langBtn"></button>
+  </header>
+  <p class="bubble" id="bubble"></p>
+
+  <section id="v-scan">
+    <label class="big-btn" for="file">
+      <span class="ic">📸</span><span><b data-i="scanBtn"></b><span data-i="scanSub"></span></span>
+    </label>
+    <input type="file" id="file" accept="image/*" capture="environment" class="hide">
+    <div id="scanStatus" class="card hide" style="margin-top:16px">
+      <div id="scanMsg"></div><div class="prog" id="progW"><i id="progBar"></i></div>
+      <img id="prev" class="prev hide" alt="">
+    </div>
+    <div class="card" style="margin-top:16px">
+      <div class="muted" data-i="or" style="margin-bottom:8px"></div>
+      <div class="row"><input type="text" id="q" list="names" data-ph="ph" autocomplete="off"><button class="btn mint" id="findBtn" data-i="find"></button></div>
+      <datalist id="names"></datalist>
+      <div style="margin-top:12px"><span class="muted" data-i="demo"></span><br><span id="demoChips"></span></div>
+    </div>
+    <div id="result"></div>
+  </section>
+
+  <section id="v-meds" class="hide">
+    <div class="card" id="people"></div>
+    <div id="medList"></div>
+    <div id="safety"></div>
+    <div class="card" id="remCard"></div>
+  </section>
+
+  <section id="v-ask" class="hide">
+    <div id="chat" class="card" style="min-height:240px"></div>
+    <div id="askChips" style="margin-bottom:10px"></div>
+    <div class="row" style="position:sticky;bottom:92px">
+      <input type="text" id="askIn" data-ph="askPh" autocomplete="off">
+      <button class="btn lav hide" id="micBtn" aria-label="mic">🎤</button>
+      <button class="btn mint" id="askSend" data-i="send"></button>
+    </div>
+  </section>
+
+  <section id="v-save" class="hide"></section>
+  <section id="v-care" class="hide"></section>
+
+  <p class="foot" data-i="disc"></p>
+  <p class="foot"><a href="/live.html" target="_blank" data-i="liveLink"></a></p>
+</div>
+
+<nav class="tabs">
+  <button class="tab on" data-tab="scan"><span>📸</span><i data-i="tScan"></i></button>
+  <button class="tab" data-tab="ask"><span>🤖</span><i data-i="tAsk"></i></button>
+  <button class="tab" data-tab="meds"><span>💊</span><i data-i="tMeds"></i></button>
+  <button class="tab" data-tab="save"><span>💰</span><i data-i="tSave"></i></button>
+  <button class="tab" data-tab="care"><span>🏥</span><i data-i="tCare"></i></button>
+</nav>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ---------- helpers ---------- */
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const store={get(k,d){try{const v=localStorage.getItem('dd_'+k);return v===null?d:JSON.parse(v)}catch{return d}},set(k,v){try{localStorage.setItem('dd_'+k,JSON.stringify(v))}catch(e){toast('Storage full')}}};
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let lang=store.get('lang','en'), custom=store.get('custom',{});
+/* family: several people, each with their own medicine list (migrates the old single list) */
+let people=store.get('people',null), mineBy=store.get('mineBy',null), cur=store.get('cur',null);
+if(!people||!mineBy){ people=[{id:'p1',name:store.get('who','Dadi')||'Dadi'}]; mineBy={p1:store.get('mine',[])}; cur='p1'; store.set('people',people); store.set('mineBy',mineBy); store.set('cur',cur); }
+if(!people.some(p=>p.id===cur))cur=people[0].id;
+let mine=mineBy[cur]||[], who=(people.find(p=>p.id===cur)||people[0]).name;
+const saveMine=()=>{mineBy[cur]=mine;store.set('mineBy',mineBy)};
+const emojiFor=n=>{n=String(n).toLowerCase(); if(/dadi|nani|bibi|granny|grandm|دادی|نانی/.test(n))return'👵'; if(/dada|nana|grandp|دادا|نانا/.test(n))return'👴';
+  if(/ammi|ami\b|mama\b|mom|mother|khala|phuppo|bhabi|baji|sister|behn|wife|biwi|امی|ماں|بہن|بھابھی|خالہ|پھوپھو/.test(n))return'👩'; if(/abu|abba|baba|dad|father|chacha|mamu|taya|bhai|brother|husband|ابو|بابا|بھائی|چچا|ماموں|تایا/.test(n))return'👨';
+  if(/beta|baby|bachch|child|kid|son|daughter|beti|بیٹا|بیٹی|بچ/.test(n))return'🧒'; return'🧑'};
+function setPerson(id){ const p=people.find(x=>x.id===id); if(!p)return; saveMine(); cur=id; mine=mineBy[id]||[]; who=p.name; store.set('cur',cur); }
+let times=store.get('times',{morning:'08:00',noon:'14:00',night:'21:00'}), remOn=store.get('remOn',false);
+let cfg={ai:false,tts:false};
+const UR=()=>lang==='ur';
+const L=a=>a[UR()?1:0];
+const title=s=>s.replace(/\b\w/g,c=>c.toUpperCase());
+const rs=n=>'Rs '+Number(n).toLocaleString('en-IN');
+
+/* ---------- translations [en, ur] ---------- */
+const T={
+tag:['Your medicine friend','آپ کا دوا دوست'],
+family:['Family: whose medicines?','خاندان: کس کی دوائیں؟'],addPh:['Add a family member (e.g. Ammi)','فرد شامل کریں (مثلاً امی)'],rename:['Rename','نام بدلیں'],delP:['Remove person','فرد ہٹائیں'],
+delConfirm:['Remove this person and their medicines?','اس فرد اور ان کی دوائیں ہٹائیں؟'],renamePrompt:['New name','نیا نام'],famTotal:['Whole family saves','پورا خاندان بچاتا ہے'],addingFor:['Adding for','کس کے لیے شامل کریں'],
+tAsk:['Ask AI','پوچھیں'],send:['Send','بھیجیں'],askPh:['Ask about your medicines…','اپنی دواؤں کے بارے میں پوچھیں…'],
+askHello:['Salaam! I am Dawa Dost 💚 Ask me anything about your medicines: price, cheaper options, how to take them. I check a real price list and a safety checker for you.','السلام علیکم! میں دوا دوست ہوں 💚 اپنی دواؤں کے بارے میں کچھ بھی پوچھیں: قیمت، سستا متبادل، کیسے لینی ہے۔ میں اصلی قیمتوں کی فہرست اور حفاظتی چیکر دیکھ کر بتاتا ہوں۔'],
+askQ1:['Which of my medicines can be cheaper?','میری کون سی دوا سستی مل سکتی ہے؟'],askQ2:['Is it safe to take my medicines together?','کیا میری دوائیں ساتھ لینا محفوظ ہے؟'],askQ3:['Where can I get free treatment?','مفت علاج کہاں سے ملے گا؟'],
+thinking:['Thinking…','سوچ رہا ہوں…'],aiErr:['The AI is busy. Please try again in a minute.','AI مصروف ہے۔ ایک منٹ بعد دوبارہ کوشش کریں۔'],noAi:['AI is not switched on on this server yet.','اس سرور پر AI ابھی آن نہیں ہے۔'],
+planBtn:['✨ AI pharmacist: make my plan','✨ AI فارماسسٹ: میرا پلان بنائیں'],planBusy:['The pharmacist agent is checking prices and safety…','فارماسسٹ ایجنٹ قیمتیں اور حفاظت چیک کر رہا ہے…'],planT:['Your AI pharmacist plan','آپ کا AI فارماسسٹ پلان'],planWatch:['Watch out','احتیاط'],planAsk:['Ask your doctor or pharmacist','اپنے ڈاکٹر یا فارماسسٹ سے پوچھیں'],planSave:['Estimated saving','اندازاً بچت'],
+micHint:['Listening… speak now','سن رہا ہوں… بولیں'],
+tScan:['Scan','اسکین'],tMeds:['My Meds','میری دوائیں'],tSave:['Savings','بچت'],tCare:['Help','مدد'],
+scanBtn:['Scan strip or prescription','پٹی یا نسخہ اسکین کریں'],scanSub:['Photo of the medicine or the doctor’s prescription','دوا یا ڈاکٹر کے نسخے کی تصویر لیں'],
+or:['…or type the medicine name','…یا دوا کا نام لکھیں'],ph:['e.g. Panadol','مثلاً Panadol'],find:['Find','تلاش'],demo:['Try one:','آزمائیں:'],
+reading:['Reading the photo…','تصویر پڑھ رہے ہیں…'],reading_ai:['✨ AI is reading the prescription…','✨ AI نسخہ پڑھ رہا ہے…'],loadOcr:['Loading the reader (first time only)…','ریڈر لوڈ ہو رہا ہے (پہلی بار)…'],
+iRead:['I read:','میں نے پڑھا:'],none:['I could not recognise a medicine. Try a clearer, closer photo, or type the name.','دوا پہچان نہیں سکا۔ صاف اور قریب سے تصویر لیں، یا نام لکھیں۔'],
+found:['I found','مجھے ملا'],add:['Add to My Meds','میری دواؤں میں شامل کریں'],added:['✓ Added','✓ شامل ہو گئی'],remove:['Remove','ہٹائیں'],
+listen:['🔊 Listen','🔊 سنیں'],stop:['⏹ Stop','⏹ روکیں'],brand:['Brand','برانڈ'],generic:['Cheaper same-salt','سستا متبادل'],
+strip:['per pack','فی پیک'],ask:['Ask the pharmacist for the salt','فارماسسٹ سے یہ سالٹ مانگیں'],
+emptyMeds:['No medicines yet. Scan one first!','ابھی کوئی دوا نہیں۔ پہلے ایک اسکین کریں!'],
+for:['Medicines for','دوائیں کس کے لیے:'],safety:['Safety check','حفاظتی جانچ'],safeOk:['✅ No dangerous clashes found between these medicines.','✅ ان دواؤں میں کوئی خطرناک ٹکراؤ نہیں ملا۔'],
+remTitle:['⏰ Reminders','⏰ یاد دہانی'],remOn:['Reminders ON','یاد دہانی آن'],remOff:['Reminders OFF','یاد دہانی بند'],test:['Test now','ابھی چیک کریں'],
+rec:['🎙 Record family voice','🎙 گھر والوں کی آواز ریکارڈ کریں'],recStop:['⏹ Stop recording','⏹ ریکارڈنگ روکیں'],play:['▶ Play','▶ چلائیں'],voiceSaved:['Voice saved ✓','آواز محفوظ ✓'],
+micErr:['Microphone not allowed','مائیک کی اجازت نہیں ملی'],remHint:['Keep this page open. A loved one’s recorded voice plays at reminder time.','یہ صفحہ کھلا رکھیں۔ یاد دہانی کے وقت اپنوں کی آواز بجے گی۔'],
+saveTitle:['Money saved','پیسے بچے'],saveSub:['by choosing the cheaper same-salt medicine','سستا متبادل چن کر'],year:['Up to {x} a year on long-term medicines','طویل مدتی دواؤں پر سال میں {x} تک'],
+shareBtn:['📤 Share the savings card','📤 بچت کارڈ شیئر کریں'],noSave:['Add medicines to see how much you save.','بچت دیکھنے کے لیے دوائیں شامل کریں۔'],
+adoptT:['🧓 Adopt a Grandparent','🧓 کسی بزرگ کو اپنائیں'],adoptD:['Set this up for a dada, dadi, nana, nani, neighbour or helper. Every rupee saved is a meal, a bus fare, a school book.','اپنے دادا، دادی، نانا، نانی، پڑوسی یا ملازم کے لیے سیٹ کریں۔ بچایا ہوا ہر روپیہ ایک وقت کا کھانا، کرایہ یا کتاب ہے۔'],
+perCourse:['this course / month','اس کورس / مہینے میں'],
+careT:['Find free & cheap care near you','اپنے قریب مفت اور سستا علاج ڈھونڈیں'],gov:['🏥 Government hospital','🏥 سرکاری ہسپتال'],bhu:['🩺 Basic Health Unit (BHU)','🩺 بنیادی مرکزِ صحت (BHU)'],sehat:['💳 Sehat Sahulat hospital','💳 صحت سہولت ہسپتال'],edhi:['🚑 Edhi centre','🚑 ایدھی سینٹر'],
+helpT:['Emergency helplines (Pakistan)','ہنگامی ہیلپ لائنز (پاکستان)'],r1122:['Rescue 1122','ریسکیو 1122'],e115:['Edhi ambulance 115','ایدھی ایمبولینس 115'],mind:['Umang mental-health line 0311-7786264','امنگ ذہنی صحت ہیلپ لائن 0311-7786264'],
+redT:['Is it an emergency?','کیا یہ ایمرجنسی ہے؟'],redD:['Tick anything that applies','جو علامت ہو اس پر ٹک کریں'],
+redYes:['🚨 GO TO A HOSPITAL OR CALL 1122 NOW. Do not wait for medicines.','🚨 ابھی ہسپتال جائیں یا 1122 پر کال کریں۔ دوا کا انتظار نہ کریں۔'],
+redNo:['No emergency signs ticked. If you feel worse, see a doctor.','کوئی ایمرجنسی علامت نہیں چنی۔ طبیعت بگڑے تو ڈاکٹر کو دکھائیں۔'],
+disc:['Information only, not medical advice. Prices are approximate. Always confirm with a pharmacist or doctor.','صرف معلومات، ڈاکٹری مشورہ نہیں۔ قیمتیں تقریباً ہیں۔ ہمیشہ ڈاکٹر یا فارماسسٹ سے تصدیق کریں۔'],
+hello:['Show me a medicine strip or a doctor’s prescription and I will explain it!','دوا کی پٹی یا ڈاکٹر کا نسخہ دکھائیں، میں سمجھاؤں گا!'],
+cant:['No voice for this language on this device.','اس ڈیوائس پر اس زبان کی آواز دستیاب نہیں۔'],
+copied:['Saved the card as an image','کارڈ تصویر کی صورت میں محفوظ ہوا'],
+rxTitle:['Doctor wrote:','ڈاکٹر نے لکھا:'],rxDays:['days','دن'],aiBadge:['✨ read by AI','✨ AI نے پڑھا'],
+lowConf:['Some text was unclear. Please confirm with your doctor or pharmacist.','کچھ تحریر واضح نہیں تھی۔ ڈاکٹر یا فارماسسٹ سے ضرور تصدیق کریں۔'],noPrice:['Price not in our list','قیمت ہماری فہرست میں نہیں'],
+liveLink:['📺 Live Room (for presentations)','📺 لائیو روم (پریزنٹیشن کے لیے)'],
+aiFail:['AI reader is busy, using the basic reader…','AI ریڈر مصروف ہے، سادہ ریڈر استعمال کر رہے ہیں…'],
+offline:['The photo reader needs internet. You can still type the name below.','فوٹو ریڈر کو انٹرنیٹ چاہیے۔ آپ نیچے نام لکھ سکتے ہیں۔'],
+};
+const RED=[['Chest pain or pressure','Trouble breathing','Fainting or confusion','Face drooping, arm weakness or slurred speech','Heavy bleeding','Vomiting blood or black stools','Seizure / fits','Very high fever with stiff neck'],
+['سینے میں درد یا دباؤ','سانس لینے میں دشواری','بے ہوشی یا الجھن','چہرہ ٹیڑھا، بازو کمزور یا بولنے میں دشواری','شدید خون بہنا','خون کی قے یا کالا پاخانہ','دورہ / جھٹکے','تیز بخار کے ساتھ گردن اکڑنا']];
+const t=k=>L(T[k]);
+const SL={morning:['Morning','صبح'],noon:['Afternoon','دوپہر'],night:['Night','رات']}, SI={morning:'☀️',noon:'🌤️',night:'🌙'};
+const FD={after:['after food','کھانے کے بعد'],before:['before food','کھانے سے پہلے'],empty:['on an empty stomach','خالی پیٹ'],any:['','']};
+
+/* ---------- Pakistani medicine list. Prices = APPROXIMATE PKR per pack, placeholders to verify (DRAP / pharmacy) ---------- */
+let M=[]; // loaded from /meds.json
+const reg={}; // current scan results (not yet saved)
+const medById=id=>custom[id]||reg[id]||M.find(m=>m.id===id);
+const baseById=id=>M.find(m=>m.id===id);
+const ckey=s=>String(s||'').toLowerCase().replace(/[^a-z0-9]/g,'');
+const nm=m=>title(String(m.brands[0]||''));
+const hasPrice=m=>m.bp!=null&&m.gp!=null;
+const unitDiff=m=>hasPrice(m)?(m.bp-m.gp)/m.n:0;
+const courseSave=m=>Math.round(unitDiff(m)*m.slots.length*m.days);
+const pct=m=>hasPrice(m)?Math.round((m.bp-m.gp)/m.bp*100):0;
+
+/* ---------- matching ---------- */
+function lev(a,b){const d=Array.from({length:a.length+1},(_,i)=>[i]);for(let j=1;j<=b.length;j++)d[0][j]=j;
+ for(let i=1;i<=a.length;i++)for(let j=1;j<=b.length;j++)d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1));return d[a.length][b.length]}
+const STOP=['vitamin','complex','calcium'];
+function matchText(text){
+  const norm=String(text).toLowerCase().replace(/[^a-z0-9 ]/g,' '), compact=norm.replace(/\s+/g,'');
+  const toks=norm.split(/\s+/).filter(x=>x.length>=5), hits=[];
+  for(const m of M){
+    let bs=0,ss=0;
+    for(const b of m.brands){const k=ckey(b); if(k.length<4)continue;
+      if(compact.includes(k))bs=Math.max(bs,k.length);
+      else if(k.length>=6&&toks.some(tk=>lev(tk,k)<=1))bs=Math.max(bs,k.length-1);}
+    for(const w of m.salt.toLowerCase().split(/[^a-z]+/)){ if(w.length<6||STOP.includes(w))continue;
+      if(compact.includes(w))ss=Math.max(ss,w.length);
+      else if(toks.some(tk=>lev(tk,w)<=1))ss=Math.max(ss,w.length-1);}
+    if(bs)hits.push({m,s:100+bs});else if(ss)hits.push({m,s:ss});
+  }
+  hits.sort((a,b)=>b.s-a.s);
+  const strong=hits.filter(h=>h.s>=100);
+  return (strong.length?strong:hits).slice(0,4).map(h=>h.m);
+}
+function slotsFromFreq(f){
+  if(!f)return null; f=String(f).toUpperCase().replace(/\s/g,'');
+  const m=f.match(/^(\d+)[+\-–](\d+)[+\-–](\d+)$/);
+  if(m){const s=[];if(+m[1])s.push('morning');if(+m[2])s.push('noon');if(+m[3])s.push('night');return s.length?s:null}
+  if(/^(OD|QD)$/.test(f))return['morning']; if(/^(BD|BID)$/.test(f))return['morning','night'];
+  if(/^(TDS|TID|QID)$/.test(f))return['morning','noon','night']; if(/^HS$/.test(f))return['night']; return null;
+}
+function medsFromAI(data){
+  return (data.medicines||[]).map((a,i)=>{
+    const base=matchText(`${a.name||''} ${a.salt||''}`)[0];
+    const slots=slotsFromFreq(a.frequency), days=a.days>0?a.days:null;
+    const food={'after food':'after','before food':'before','empty stomach':'empty'}[(a.timing||'').toLowerCase()];
+    let m;
+    if(base)m={...base,brands:a.name?[a.name,...base.brands]:base.brands,ai:1};
+    else m={id:'ai_'+(ckey(a.name||a.salt).slice(0,24)||('x'+i)),brands:[a.name||a.salt||'Medicine'],salt:a.salt||a.name||'',str:a.strength||'',bp:null,gp:null,n:1,
+      slots:['morning','night'],food:'any',days:5,tags:[],use:[a.purpose_en||'',a.purpose_ur||a.purpose_en||''],
+      how:['Follow the doctor’s instructions.','ڈاکٹر کی ہدایت پر عمل کریں۔'],warn:[a.warning_en||'Ask your pharmacist.',a.warning_ur||'فارماسسٹ سے پوچھیں۔'],ai:1};
+    if(slots)m.slots=slots; if(days)m.days=days; if(food)m.food=food; if(!base&&a.strength)m.str=a.strength;
+    m.rx={freq:a.frequency||'',days:days||''}; if(a.confidence==='low')m.low=1; return m;
+  });
+}
+
+/* ---------- voice (server Azure Urdu voice, browser fallback) ---------- */
+let speaking=false, curAudio=null, spkEnd=null;
+function setSpeaking(v){speaking=v;$('#mascot').classList.toggle('speaking',v)}
+function stopSpeak(){try{speechSynthesis.cancel()}catch{} if(curAudio){curAudio.onended=curAudio.onerror=null;curAudio.pause();curAudio=null} const e=spkEnd;spkEnd=null;setSpeaking(false);e&&e()}
+function browserSpeak(text){
+  if(!('speechSynthesis' in window)){toast(t('cant'));setSpeaking(false);spkEnd&&spkEnd();return}
+  const u=new SpeechSynthesisUtterance(text); u.lang=UR()?'ur-PK':'en-IN'; u.rate=.9;
+  const vs=speechSynthesis.getVoices(), pick=vs.find(v=>v.lang.replace('_','-')===u.lang)||vs.find(v=>v.lang.toLowerCase().startsWith(u.lang.slice(0,2)));
+  if(pick)u.voice=pick; else if(UR())toast(t('cant'));
+  u.onstart=()=>setSpeaking(true); u.onend=u.onerror=()=>{setSpeaking(false);const e=spkEnd;spkEnd=null;e&&e()};
+  speechSynthesis.speak(u);
+}
+async function speak(text,onend){
+  stopSpeak(); spkEnd=onend||null; setSpeaking(true);
+  if(cfg.tts){
+    try{
+      const r=await fetch('/api/tts',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text,lang:UR()?'ur':'en'})});
+      if(!r.ok)throw new Error('tts');
+      const url=URL.createObjectURL(await r.blob()), a=new Audio(url); curAudio=a;
+      a.onended=a.onerror=()=>{curAudio=null;setSpeaking(false);const e=spkEnd;spkEnd=null;e&&e()};
+      await a.play(); return;
+    }catch{ curAudio=null; }
+  }
+  browserSpeak(text);
+}
+function explain(m){
+  const slots=m.slots.map(s=>L(SL[s])).join(UR()?' اور ':' and '), food=L(FD[m.food]);
+  if(UR())return `${nm(m)}۔ یہ دوا ${m.use[1]} کے لیے ہے۔ ${m.how[1]} اسے ${slots} ${food} لیں۔ احتیاط: ${m.warn[1]}`+(hasPrice(m)?` یہی دوا، ${m.salt}، سستے متبادل کے طور پر تقریباً ${m.gp} روپے کی ملتی ہے، جبکہ ${nm(m)} تقریباً ${m.bp} روپے کی ہے۔ فارماسسٹ سے ${m.salt} مانگیں۔`:'')+` اور ڈاکٹر یا فارماسسٹ سے ضرور تصدیق کر لیں۔`;
+  return `${nm(m)}. This is ${m.salt}, used for ${m.use[0]}. ${m.how[0]} Take it in the ${slots.toLowerCase()} ${food}. Careful: ${m.warn[0]}`+(hasPrice(m)?` The same salt as a cheaper medicine costs about ${m.gp} rupees, instead of ${m.bp} rupees. Ask the pharmacist for ${m.salt}.`:'')+` Please also confirm with a doctor or pharmacist.`;
+}
+
+/* ---------- UI bits ---------- */
+let toastT; function toast(msg){const e=$('#toast');e.textContent=msg;e.classList.add('on');clearTimeout(toastT);toastT=setTimeout(()=>e.classList.remove('on'),2800)}
+function say(msg){$('#bubble').textContent=msg}
+function medCard(m,inList){
+  const has=mine.includes(m.id);
+  return `<div class="card med" data-id="${esc(m.id)}" ${inList?'data-list="1"':''}>
+   <div class="top"><div><h3>${esc(nm(m))}</h3><span class="chip">${esc(m.salt)}</span>${m.str?`<span class="chip">${esc(m.str)}</span>`:''}${m.ai?`<span class="chip ai">${t('aiBadge')}</span>`:''}</div>${pct(m)>0?`<span class="save">−${pct(m)}%</span>`:''}</div>
+   <div class="muted">${esc(L(m.use))}</div>
+   ${m.rx&&(m.rx.freq||m.rx.days)?`<div class="rx">✍️ ${t('rxTitle')} <b dir="ltr">${esc(m.rx.freq)}</b> ${m.rx.days?`· ${esc(m.rx.days)} ${t('rxDays')}`:''}</div>`:''}
+   <div class="slots">${['morning','noon','night'].map(s=>`<div class="slot ${m.slots.includes(s)?'on':''}"><span>${SI[s]}</span>${L(SL[s])}</div>`).join('')}</div>
+   ${m.food!=='any'?`<div class="chip">🍽️ ${esc(L(FD[m.food]))}</div>`:''}
+   ${hasPrice(m)?`<div class="price"><div class="p brand">${t('brand')}<b>${rs(m.bp)}</b>${t('strip')}</div><div style="font-size:24px" class="arrow">➜</div><div class="p gen">${t('generic')}<b>${rs(m.gp)}</b>${t('strip')}</div></div>
+   <div class="muted" style="margin-bottom:6px">${t('ask')}: <b dir="ltr">${esc(m.salt)}</b></div>`:`<div class="chip">${t('noPrice')}</div>`}
+   ${m.low?`<div class="alert bad">⚠️ ${t('lowConf')}</div>`:''}
+   <div class="warn">⚠️ ${esc(L(m.warn))}</div>
+   <div class="row">
+     <button class="btn sun" data-act="listen">${t('listen')}</button>
+     ${inList?`<button class="btn coral" data-act="remove">${t('remove')}</button>`:`<button class="btn mint" data-act="add" ${has?'disabled':''}>${has?t('added'):t('add')}</button>`}
+   </div></div>`;
+}
+document.addEventListener('click',e=>{
+  const b=e.target.closest('[data-act]'); if(!b)return;
+  const card=b.closest('[data-id]'), id=card.dataset.id, act=b.dataset.act;
+  const m=card.dataset.list?medById(id):(reg[id]||medById(id));
+  if(act==='listen'){ if(speaking){stopSpeak();b.textContent=t('listen')} else {b.textContent=t('stop');speak(explain(m),()=>b.textContent=t('listen'))} }
+  if(act==='add'){ if(!mine.includes(id))mine.push(id); custom[id]=m; store.set('custom',custom); saveMine(); confetti(40); b.textContent=t('added'); b.disabled=true; toast(`${nm(m)} → ${emojiFor(who)} ${who} ✓`); }
+  if(act==='remove'){ mine=mine.filter(x=>x!==id); saveMine(); renderMeds(); }
+});
+
+/* ---------- tabs ---------- */
+function showTab(n){
+  $$('.tab').forEach(b=>b.classList.toggle('on',b.dataset.tab===n));
+  ['scan','ask','meds','save','care'].forEach(x=>$('#v-'+x).classList.toggle('hide',x!==n));
+  if(n==='ask')renderChat(); if(n==='meds')renderMeds(); if(n==='save')renderSave(); if(n==='care')renderCare();
+  stopSpeak(); window.scrollTo({top:0,behavior:'smooth'});
+}
+$$('.tab').forEach(b=>b.onclick=()=>showTab(b.dataset.tab));
+
+/* ---------- scan ---------- */
+function showResult(list,raw,note){
+  const r=$('#result');
+  list.forEach(m=>{reg[m.id]=m});
+  if(!list.length){r.innerHTML=`<div class="card">😕 ${t('none')}${raw?`<div class="muted" style="margin-top:8px" dir="ltr">${t('iRead')} ${esc(raw.slice(0,120))}</div>`:''}</div>`;say(t('none'));return}
+  r.innerHTML=`<div class="card row"><b>👤 ${t('addingFor')}</b><select id="scanWho" style="font:inherit;font-weight:800;border:2.5px solid var(--ink);border-radius:14px;padding:6px 10px;background:var(--sun);color:var(--ink)">${people.map(p=>`<option value="${esc(p.id)}" ${p.id===cur?'selected':''}>${emojiFor(p.name)} ${esc(p.name)}</option>`).join('')}</select></div>
+   <h3 style="margin:6px 4px 12px">${t('found')} ${list.length>1?list.length:''} 👇</h3>`+list.map(m=>medCard(m,false)).join('');
+  $('#scanWho').onchange=e=>{setPerson(e.target.value);$$('#result [data-act=add]').forEach(b=>{const has=mine.includes(b.closest('[data-id]').dataset.id);b.disabled=has;b.textContent=has?t('added'):t('add')})};
+  say(`${nm(list[0])}${hasPrice(list[0])?' · '+t('generic')+' '+rs(list[0].gp):''}!`); confetti(30);
+  r.scrollIntoView({behavior:'smooth',block:'start'});
+}
+function runSearch(txt){ txt=(txt||'').trim(); if(txt)showResult(matchText(txt),''); }
+$('#findBtn').onclick=()=>runSearch($('#q').value);
+$('#q').addEventListener('keydown',e=>{if(e.key==='Enter')runSearch($('#q').value)});
+$('#demoChips').innerHTML=['Panadol','Augmentin','Risek','Brufen','Glucophage'].map(x=>`<span class="chip btn" data-demo="${x}">${x}</span>`).join('');
+$('#demoChips').onclick=e=>{const d=e.target.dataset.demo; if(d){$('#q').value=d;runSearch(d)}};
+const initNames=()=>{$('#names').innerHTML=M.map(m=>`<option value="${esc(nm(m))}">`).join('')};
+
+let tessP=null;
+function loadTess(){ if(window.Tesseract)return Promise.resolve(); if(tessP)return tessP;
+  tessP=new Promise((res,rej)=>{const s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js';s.onload=res;s.onerror=()=>{tessP=null;rej(new Error('offline'))};document.head.appendChild(s)}); return tessP}
+function setProg(p,msg,ind){$('#progW').classList.toggle('ind',!!ind);$('#progBar').style.width=ind?'':Math.round(p*100)+'%'; if(msg)$('#scanMsg').textContent=msg}
+async function prep(file){
+  const bmp=await createImageBitmap(file), sc=Math.min(1,1400/Math.max(bmp.width,bmp.height));
+  const c=document.createElement('canvas'); c.width=Math.round(bmp.width*sc); c.height=Math.round(bmp.height*sc);
+  const x=c.getContext('2d'); x.drawImage(bmp,0,0,c.width,c.height);
+  const jpg=c.toDataURL('image/jpeg',.82);
+  const id=x.getImageData(0,0,c.width,c.height), d=id.data;
+  for(let i=0;i<d.length;i+=4){let g=.299*d[i]+.587*d[i+1]+.114*d[i+2]; g=Math.max(0,Math.min(255,(g-128)*1.35+128)); d[i]=d[i+1]=d[i+2]=g}
+  x.putImageData(id,0,0); return {ocr:c,jpg,b64:jpg.split(',')[1]};
+}
+async function aiScan(b64){
+  const r=await fetch('/api/scan',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({image:b64,mime:'image/jpeg'})});
+  if(!r.ok)throw new Error('ai');
+  return r.json();
+}
+async function ocrScan(canvas){
+  await loadTess(); setProg(.1,t('reading'));
+  const {data}=await Tesseract.recognize(canvas,'eng',{logger:m=>{if(m.status==='recognizing text')setProg(.1+m.progress*.9,t('reading'))}});
+  return data.text.replace(/\s+/g,' ');
+}
+$('#file').onchange=async e=>{
+  const f=e.target.files[0]; if(!f)return; e.target.value='';
+  $('#scanStatus').classList.remove('hide'); $('#result').innerHTML='';
+  try{
+    setProg(.05,cfg.ai?t('reading_ai'):t('loadOcr'),cfg.ai);
+    const {ocr,jpg,b64}=await prep(f); const im=$('#prev'); im.src=jpg; im.classList.remove('hide');
+    if(cfg.ai){
+      try{ const data=await aiScan(b64); $('#scanStatus').classList.add('hide'); showResult(medsFromAI(data),'',data.note); return; }
+      catch{ toast(t('aiFail')); }
+    }
+    setProg(.05,t('loadOcr'),false);
+    const txt=await ocrScan(ocr); setProg(1,'✓'); setTimeout(()=>$('#scanStatus').classList.add('hide'),700);
+    showResult(matchText(txt),txt);
+  }catch(err){ setProg(0,'⚠️ '+t('offline')); }
+};
+
+/* ---------- my meds + safety + reminders ---------- */
+function renderPeople(){
+  $('#people').innerHTML=`<div class="muted" style="margin-bottom:6px">${t('family')}</div>
+   <div class="row">${people.map(p=>`<button class="btn ${p.id===cur?'sun':'ghost'}" data-p="${esc(p.id)}">${emojiFor(p.name)} ${esc(p.name)} <small>(${(p.id===cur?mine:(mineBy[p.id]||[])).length})</small></button>`).join('')}</div>
+   <div class="row" style="margin-top:10px"><input type="text" id="newP" maxlength="20" placeholder="${t('addPh')}"><button class="btn mint" id="addP">＋</button></div>
+   <div class="row" style="margin-top:8px"><button class="btn ghost" id="renP">✏️ ${t('rename')}</button>${people.length>1?`<button class="btn coral" id="delP">🗑 ${t('delP')}</button>`:''}</div>`;
+  $$('#people [data-p]').forEach(b=>b.onclick=()=>{setPerson(b.dataset.p);renderMeds()});
+  const add=()=>{const n=$('#newP').value.trim(); if(!n)return; saveMine(); const id='p'+Date.now().toString(36); people.push({id,name:n}); mineBy[id]=[]; store.set('people',people); setPerson(id); toast(`${emojiFor(n)} ${n} ✓`); renderMeds()};
+  $('#addP').onclick=add; $('#newP').addEventListener('keydown',e=>{if(e.key==='Enter')add()});
+  $('#renP').onclick=()=>{const n=(prompt(t('renamePrompt'),who)||'').trim().slice(0,20); if(!n)return; people.find(p=>p.id===cur).name=n; who=n; store.set('people',people); renderMeds()};
+  const d=$('#delP'); if(d)d.onclick=()=>{ if(!confirm(t('delConfirm')))return; people=people.filter(p=>p.id!==cur); delete mineBy[cur]; store.set('people',people); store.set('mineBy',mineBy); cur=people[0].id; mine=mineBy[cur]||[]; who=people[0].name; store.set('cur',cur); renderMeds() };
+}
+function safetyChecks(){
+  const meds=mine.map(medById).filter(Boolean), out=[], cnt=tag=>meds.filter(m=>(m.tags||[]).includes(tag)), nms=a=>a.map(nm).join(', ');
+  if(cnt('paracetamol').length>=2)out.push(['Two or more of these contain paracetamol ('+nms(cnt('paracetamol'))+'). Too much can damage the liver. Take only one.','ان میں سے دو یا زیادہ میں پیراسیٹامول ہے ('+nms(cnt('paracetamol'))+')۔ زیادہ لینے سے جگر خراب ہو سکتا ہے۔ صرف ایک لیں۔']);
+  if(cnt('nsaid').length>=2)out.push(['Two pain-killers of the same family ('+nms(cnt('nsaid'))+') together can cause stomach bleeding. Ask a doctor.','ایک ہی خاندان کی دو درد کی دوائیں ('+nms(cnt('nsaid'))+') ساتھ لینے سے معدے میں خون آ سکتا ہے۔ ڈاکٹر سے پوچھیں۔']);
+  if(cnt('antihist').length>=2)out.push(['Two anti-allergy medicines together cause heavy sleepiness.','دو الرجی کی دوائیں ساتھ لینے سے بہت نیند آتی ہے۔']);
+  if(cnt('ppi').length>=2)out.push(['Two acidity medicines of the same type ('+nms(cnt('ppi'))+'). One is enough.','تیزابیت کی ایک ہی قسم کی دو دوائیں ('+nms(cnt('ppi'))+')۔ ایک کافی ہے۔']);
+  if(cnt('calcium').length&&cnt('quinolone').length)out.push(['Calcium blocks Ciprofloxacin. Keep a 2-hour gap.','کیلشیم سپروفلوکساسن کا اثر روکتا ہے۔ 2 گھنٹے کا وقفہ رکھیں۔']);
+  if(cnt('calcium').length&&cnt('levothyroxine').length)out.push(['Calcium blocks thyroid medicine. Keep a 4-hour gap.','کیلشیم تھائرائیڈ کی دوا کا اثر روکتا ہے۔ 4 گھنٹے کا وقفہ رکھیں۔']);
+  if(cnt('metronidazole').length)out.push(['Metronidazole: no alcohol at all during the course and 2 days after.','میٹرونیڈازول: کورس میں اور 2 دن بعد تک شراب بالکل نہیں۔']);
+  return out;
+}
+function renderMeds(){
+  mine=mine.filter(id=>medById(id)); saveMine(); renderPeople();
+  $('#medList').innerHTML=mine.length?mine.map(id=>medCard(medById(id),true)).join(''):`<div class="card" style="text-align:center">💊<br>${t('emptyMeds')}<br><br><button class="btn mint" onclick="showTab('scan')">${t('tScan')}</button></div>`;
+  const s=mine.length?safetyChecks():[];
+  $('#safety').innerHTML=mine.length?`<div class="card"><h3>🛡️ ${t('safety')}</h3>${s.length?s.map(x=>`<div class="alert bad">⚠️ ${esc(L(x))}</div>`).join(''):`<div class="alert ok">${t('safeOk')}</div>`}</div>`:'';
+  $('#safety').insertAdjacentHTML('beforeend',mine.length&&cfg.ai?`<button class="big-btn" id="planBtn" style="background:var(--lav);margin-bottom:16px"><span class="ic">🧑‍⚕️</span><span><b>${t('planBtn')}</b></span></button><div id="planOut"></div>`:'');
+  const pb=$('#planBtn'); if(pb)pb.onclick=runPlan;
+  renderRem(); say(mine.length?`${mine.length} 💊 · ${t('safety')} ✓`:t('hello'));
+}
+/* ---------- AI agents: pharmacist plan + chat ---------- */
+const TOOLNAME={lookup_medicine:['💊 price list','💊 قیمتوں کی فہرست'],check_interactions:['🛡️ safety checker','🛡️ حفاظتی چیکر'],calculate_savings:['💰 savings calculator','💰 بچت کیلکولیٹر'],emergency_contacts:['🚑 helplines','🚑 ہیلپ لائنز'],emergency_guard:['🚨 emergency guard','🚨 ایمرجنسی گارڈ']};
+const traceChips=tr=>[...new Set(tr||[])].map(x=>`<span class="chip ai">🔧 ${esc(L(TOOLNAME[x]||[x,x]))}</span>`).join('');
+const myMedsPayload=()=>mine.map(medById).filter(Boolean).map(m=>({name:nm(m),salt:m.salt,slots:m.slots,days:m.days,rx:m.rx?m.rx.freq:''}));
+let planText='';
+async function runPlan(){
+  const out=$('#planOut'); out.innerHTML=`<div class="card"><div>${t('planBusy')}</div><div class="prog ind"><i></i></div></div>`; say(t('planBusy'));
+  try{
+    const r=await fetch('/api/plan',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({lang:UR()?'ur':'en',meds:myMedsPayload()})});
+    if(!r.ok)throw new Error(r.status); const d=await r.json();
+    planText=[d.summary,...d.items.map(i=>`${i.name}. ${i.explanation} ${i.tip}`),...(d.watch_out||[])].join(' ');
+    out.innerHTML=`<div class="card"><h3>${t('planT')}</h3><div style="margin:6px 0">${traceChips(d.trace)}</div>
+      <p>${esc(d.summary)}</p>
+      ${d.items.map(i=>`<div class="rx"><b>${esc(i.name)}</b><br>${esc(i.explanation)}<br><span class="muted">💡 ${esc(i.tip)}</span></div>`).join('')}
+      ${d.watch_out.length?`<h3 style="margin-top:10px">⚠️ ${t('planWatch')}</h3>${d.watch_out.map(x=>`<div class="alert bad">${esc(x)}</div>`).join('')}`:''}
+      ${d.ask_doctor.length?`<h3 style="margin-top:10px">🩺 ${t('planAsk')}</h3><ul>${d.ask_doctor.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:''}
+      ${d.savings_pkr?`<div class="chip" style="margin-top:6px">💰 ${t('planSave')}: ${rs(d.savings_pkr)}</div>`:''}
+      <div class="row" style="margin-top:10px"><button class="btn sun" id="planListen">${t('listen')}</button></div></div>`;
+    $('#planListen').onclick=e=>{ if(speaking){stopSpeak();e.target.textContent=t('listen')} else {e.target.textContent=t('stop');speak(planText,()=>e.target.textContent=t('listen'))} };
+    confetti(40); say(d.summary);
+  }catch(e){ out.innerHTML=`<div class="alert bad">${e.message==='503'?t('noAi'):t('aiErr')}</div>`; }
+}
+let chatLog=[]; // {role:'user'|'assistant', text, trace}
+function renderChat(){
+  const box=$('#chat');
+  if(!chatLog.length)box.innerHTML=`<div class="bubble" style="margin:0">${t('askHello')}</div>`;
+  else box.innerHTML=chatLog.map((m,i)=>m.role==='user'
+    ?`<div style="display:flex;justify-content:flex-end;margin:8px 0"><div class="bubble" style="margin:0;background:var(--sun);border-radius:20px 20px 6px 20px">${esc(m.text)}</div></div>`
+    :`<div style="margin:8px 0"><div class="bubble" style="margin:0 0 4px">${esc(m.text)}</div>${m.pending?'':`<div class="row">${traceChips(m.trace)}<button class="btn sun" data-say="${i}" style="padding:2px 10px">${t('listen')}</button></div>`}</div>`).join('');
+  $('#askChips').innerHTML=chatLog.length?'':['askQ1','askQ2','askQ3'].map(k=>`<span class="chip btn" data-q="${k}">${t(k)}</span>`).join('');
+  box.scrollIntoView({block:'end'});
+}
+async function sendAsk(text){
+  text=(text||$('#askIn').value).trim(); if(!text)return; $('#askIn').value='';
+  chatLog.push({role:'user',text}); chatLog.push({role:'assistant',text:'…'+t('thinking'),pending:1}); renderChat();
+  try{
+    const hist=chatLog.filter(m=>!m.pending).map(m=>({role:m.role,text:m.text}));
+    const r=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({lang:UR()?'ur':'en',messages:hist,meds:myMedsPayload()})});
+    if(!r.ok)throw new Error(r.status); const d=await r.json();
+    chatLog[chatLog.length-1]={role:'assistant',text:d.reply,trace:d.trace}; renderChat(); if(d.emergency)confetti(0);
+    speak(d.reply);
+  }catch(e){ chatLog[chatLog.length-1]={role:'assistant',text:e.message==='503'?t('noAi'):t('aiErr'),trace:[]}; renderChat(); }
+}
+$('#askSend').onclick=()=>sendAsk();
+$('#askIn').addEventListener('keydown',e=>{if(e.key==='Enter')sendAsk()});
+$('#askChips').onclick=e=>{const k=e.target.dataset.q; if(k)sendAsk(t(k))};
+$('#chat').onclick=e=>{const i=e.target.closest('[data-say]'); if(i){const m=chatLog[+i.dataset.say]; if(m)speak(m.text)}};
+/* voice input (browser speech recognition; works in Chrome on Android/desktop) */
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+if(SR){ $('#micBtn').classList.remove('hide');
+  $('#micBtn').onclick=()=>{ const r=new SR(); r.lang=UR()?'ur-PK':'en-IN'; r.interimResults=false; toast(t('micHint')); say(t('micHint'));
+    r.onresult=e=>{const tx=e.results[0][0].transcript; $('#askIn').value=tx; sendAsk(tx)}; r.onerror=()=>toast(t('micErr')); try{r.start()}catch{} }; }
+let rec=null;
+function renderRem(){
+  const v=store.get('voice',null);
+  $('#remCard').innerHTML=`<h3>${t('remTitle')}</h3>
+   <div class="row" style="margin:10px 0">${['morning','noon','night'].map(s=>`<label class="chip" style="padding:4px 10px">${SI[s]} ${L(SL[s])} <input type="time" data-time="${s}" value="${times[s]}" style="padding:4px 6px;border-radius:10px"></label>`).join('')}</div>
+   <div class="row">
+     <button class="btn ${remOn?'mint':'ghost'}" id="remToggle">${remOn?'🔔 '+t('remOn'):'🔕 '+t('remOff')}</button>
+     <button class="btn sun" id="remTest">${t('test')}</button>
+   </div>
+   <div class="row" style="margin-top:10px">
+     <button class="btn lav" id="recBtn">${rec?t('recStop'):t('rec')}</button>
+     ${v?`<button class="btn ghost" id="playV">${t('play')}</button><span class="muted">${t('voiceSaved')}</span>`:''}
+   </div>
+   <div class="muted" style="margin-top:10px">${t('remHint')}</div>`;
+  $$('[data-time]').forEach(i=>i.onchange=()=>{times[i.dataset.time]=i.value;store.set('times',times)});
+  $('#remToggle').onclick=async()=>{remOn=!remOn;store.set('remOn',remOn); if(remOn&&'Notification' in window&&Notification.permission==='default'){try{await Notification.requestPermission()}catch{}} renderRem()};
+  $('#remTest').onclick=()=>remind(mine.length?(medById(mine[0]).slots[0]):'morning',true);
+  $('#recBtn').onclick=recToggle;
+  const pv=$('#playV'); if(pv)pv.onclick=()=>playVoice();
+}
+async function recToggle(){
+  if(rec){rec.stop();return}
+  try{
+    const st=await navigator.mediaDevices.getUserMedia({audio:true}), chunks=[], r=new MediaRecorder(st); rec=r;
+    r.ondataavailable=e=>chunks.push(e.data);
+    r.onstop=()=>{st.getTracks().forEach(x=>x.stop()); rec=null; const fr=new FileReader(); fr.onload=()=>{store.set('voice',fr.result);renderRem();toast(t('voiceSaved'))}; fr.readAsDataURL(new Blob(chunks,{type:r.mimeType}));};
+    r.start(); renderRem(); setTimeout(()=>{if(r.state==='recording')r.stop()},10000);
+  }catch{toast(t('micErr'));rec=null}
+}
+function playVoice(done){const v=store.get('voice',null); if(!v){done&&done();return} const a=new Audio(v); a.onended=a.onerror=()=>done&&done(); a.play().catch(()=>done&&done()); }
+const fired={};
+// reminders cover the whole family: one message listing every person who has a medicine due in this slot
+const dueFor=(slot,test)=>people.map(p=>({p,meds:((p.id===cur?mine:mineBy[p.id])||[]).map(medById).filter(m=>m&&(test||m.slots.includes(slot)))})).filter(x=>x.meds.length);
+function remind(slot,test){
+  const parts=dueFor(slot,test).map(x=>`${x.p.name}: ${x.meds.map(nm).join(', ')}`).join(UR()?'۔ ':'. ')||'—';
+  const msg=UR()?`${L(SL[slot])} کی دوا کا وقت ہو گیا۔ ${parts}`:`Time for the ${L(SL[slot]).toLowerCase()} medicines. ${parts}`;
+  toast('⏰ '+msg); say('⏰ '+msg); confetti(25);
+  if('Notification' in window&&Notification.permission==='granted'){try{new Notification('Dawa Dost',{body:msg})}catch{}}
+  playVoice(()=>speak(msg));
+}
+setInterval(()=>{ if(!remOn)return; const n=new Date(), hm=n.toTimeString().slice(0,5);
+  ['morning','noon','night'].forEach(s=>{ if(times[s]===hm){const k=n.toDateString()+s; if(!fired[k]){fired[k]=1; if(dueFor(s).length)remind(s)}}}); },15000);
+
+/* ---------- savings ---------- */
+const famTotal=()=>people.reduce((a,p)=>a+((p.id===cur?mine:mineBy[p.id])||[]).map(medById).filter(Boolean).reduce((s,m)=>s+courseSave(m),0),0);
+function totals(){const meds=mine.map(medById).filter(Boolean); const course=meds.reduce((a,m)=>a+courseSave(m),0);
+  const year=meds.reduce((a,m)=>a+(m.chronic?Math.round(unitDiff(m)*m.slots.length*365):courseSave(m)),0); return {meds,course,year}}
+function renderSave(){
+  const {meds,course,year}=totals(), el=$('#v-save');
+  if(!meds.length||!course){el.innerHTML=`<div class="card" style="text-align:center">💰<br>${t('noSave')}<br><br><button class="btn mint" onclick="showTab('scan')">${t('tScan')}</button></div><div class="card"><h3>${t('adoptT')}</h3><p>${t('adoptD')}</p></div>`;return}
+  const mx=Math.max(...meds.map(courseSave),1);
+  el.innerHTML=`<div class="card" style="text-align:center;background:#d9f7e8"><div class="muted">${t('saveTitle')} ${esc(who?('· '+who):'')}</div>
+    <div class="huge" dir="ltr">Rs <span id="cnt">0</span></div><div>${t('saveSub')}</div><div class="muted">${t('perCourse')}</div>
+    ${year>course?`<div class="chip" style="margin-top:10px">${t('year').replace('{x}',rs(year))}</div>`:''}
+    ${people.length>1?`<div class="chip" style="margin-top:10px">👨‍👩‍👧 ${t('famTotal')}: ${rs(famTotal())}</div>`:''}</div>
+   <div class="card">${meds.filter(m=>courseSave(m)>0).map(m=>`<div style="margin-bottom:12px"><div class="row" style="justify-content:space-between"><b>${esc(nm(m))}</b><span dir="ltr">${rs(courseSave(m))}</span></div><div class="bar" style="width:${Math.max(6,courseSave(m)/mx*100)}%"></div></div>`).join('')}</div>
+   <button class="big-btn" id="shareBtn" style="background:var(--sun)"><span class="ic">📤</span><span><b>${t('shareBtn')}</b></span></button>
+   <div class="card" style="margin-top:16px"><h3>${t('adoptT')}</h3><p>${t('adoptD')}</p></div>`;
+  countUp($('#cnt'),course); confetti(80); say(`${rs(course)} 🎉`);
+  $('#shareBtn').onclick=()=>shareCard(course,year);
+}
+function countUp(el,to){const t0=performance.now();(function f(n){const p=Math.min(1,(n-t0)/1100);el.textContent=Math.round(to*(1-Math.pow(1-p,3))).toLocaleString('en-IN');if(p<1)requestAnimationFrame(f)})(t0)}
+async function shareCard(course,year){
+  const c=document.createElement('canvas'); c.width=1080; c.height=1350; const x=c.getContext('2d');
+  const g=x.createLinearGradient(0,0,1080,1350); g.addColorStop(0,'#FFF8EE'); g.addColorStop(1,'#d9f7e8'); x.fillStyle=g; x.fillRect(0,0,1080,1350);
+  x.fillStyle='#01411C'; x.fillRect(0,0,1080,24);
+  x.fillStyle='#1F2547'; x.textAlign='center'; x.font='700 56px Fredoka, sans-serif'; x.fillText('Dawa Dost 💊',540,140);
+  x.fillStyle='#3DDC97'; x.strokeStyle='#1F2547'; x.lineWidth=8; x.beginPath(); x.roundRect(90,220,900,640,60); x.fill(); x.stroke();
+  x.fillStyle='#1F2547'; x.font='700 52px Nunito, sans-serif'; x.fillText(who?`${who} saved`:'We saved',540,330);
+  x.font='700 180px Fredoka, sans-serif'; x.fillText('Rs '+course.toLocaleString('en-IN'),540,570);
+  x.font='700 46px Nunito, sans-serif'; x.fillText('by choosing cheaper same-salt medicines',540,660);
+  if(year>course){x.font='700 42px Nunito, sans-serif'; x.fillText('up to Rs '+year.toLocaleString('en-IN')+' a year',540,740)}
+  x.font='700 54px Fredoka, sans-serif'; x.fillText('Every rupee saved = a meal.',540,990);
+  x.font='700 40px Nunito, sans-serif'; x.fillText('Adopt a grandparent. Share the savings.',540,1060);
+  x.font='700 30px Nunito, sans-serif'; x.globalAlpha=.6; x.fillText('Prices approximate · confirm with a pharmacist',540,1260);
+  c.toBlob(async b=>{ const f=new File([b],'dawa-dost-savings.png',{type:'image/png'});
+    try{ if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],text:'Dawa Dost'});return} }catch{}
+    const a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download=f.name; a.click(); toast(t('copied')); });
+}
+
+/* ---------- help ---------- */
+function renderCare(){
+  const maps=q=>`https://www.google.com/maps/search/${encodeURIComponent(q)}`;
+  $('#v-care').innerHTML=`<div class="card"><h3>${t('careT')}</h3><div class="row" style="flex-direction:column;align-items:stretch;margin-top:10px">
+    <a class="btn mint" target="_blank" rel="noopener" href="${maps('government hospital near me')}">${t('gov')}</a>
+    <a class="btn sky" target="_blank" rel="noopener" href="${maps('Basic Health Unit BHU near me')}">${t('bhu')}</a>
+    <a class="btn lav" target="_blank" rel="noopener" href="${maps('Sehat Sahulat Program hospital near me')}">${t('sehat')}</a>
+    <a class="btn sun" target="_blank" rel="noopener" href="${maps('Edhi centre near me')}">${t('edhi')}</a></div></div>
+   <div class="card"><h3>${t('redT')}</h3><div class="muted">${t('redD')}</div>
+    ${RED[0].map((_,i)=>`<label class="chk"><input type="checkbox" class="red"> ${esc(RED[UR()?1:0][i])}</label>`).join('')}
+    <div id="redOut"></div></div>
+   <div class="card"><h3>${t('helpT')}</h3><div class="row" style="flex-direction:column;align-items:stretch;margin-top:10px">
+    <a class="btn coral" href="tel:1122">🚑 ${t('r1122')}</a><a class="btn coral" href="tel:115">🚑 ${t('e115')}</a><a class="btn ghost" href="tel:03117786264">💙 ${t('mind')}</a></div></div>`;
+  const upd=()=>{const any=$$('.red').some(c=>c.checked); $('#redOut').innerHTML=`<div class="alert ${any?'bad':'ok'}" style="margin-top:8px;font-size:16px">${any?t('redYes'):t('redNo')}</div>`; if(any)say(t('redYes'))};
+  $$('.red').forEach(c=>c.onchange=upd);
+}
+
+/* ---------- confetti ---------- */
+const cv=$('#confetti'), cx=cv.getContext('2d'); let parts=[],raf=0;
+function fit(){cv.width=innerWidth;cv.height=innerHeight} fit(); addEventListener('resize',fit);
+function confetti(n=60){const cols=['#3DDC97','#01411C','#FFD23F','#6EC6FF','#B79CFF'];
+  for(let i=0;i<n;i++)parts.push({x:innerWidth/2,y:innerHeight*.45,vx:(Math.random()-.5)*14,vy:-Math.random()*13-3,r:Math.random()*6+4,c:cols[i%5],a:Math.random()*6,life:90});
+  if(!raf)loop()}
+function loop(){cx.clearRect(0,0,cv.width,cv.height);parts=parts.filter(p=>p.life>0);
+  for(const p of parts){p.vy+=.45;p.x+=p.vx;p.y+=p.vy;p.a+=.2;p.life--;cx.save();cx.translate(p.x,p.y);cx.rotate(p.a);cx.fillStyle=p.c;cx.globalAlpha=Math.min(1,p.life/30);cx.fillRect(-p.r,-p.r/2,p.r*2,p.r);cx.restore()}
+  raf=parts.length?requestAnimationFrame(loop):0; if(!raf)cx.clearRect(0,0,cv.width,cv.height)}
+
+/* ---------- language + init ---------- */
+function applyLang(){
+  document.documentElement.lang=lang; document.documentElement.dir=UR()?'rtl':'ltr'; $('#langBtn').textContent=UR()?'English':'اردو';
+  $$('[data-i]').forEach(e=>e.textContent=t(e.dataset.i)); $$('[data-ph]').forEach(e=>e.placeholder=t(e.dataset.ph));
+  say(t('hello'));
+  const cur=$$('.tab').find(b=>b.classList.contains('on')).dataset.tab; if(cur!=='scan')showTab(cur); else $('#result').innerHTML='';
+}
+$('#langBtn').onclick=()=>{lang=UR()?'en':'ur';store.set('lang',lang);stopSpeak();applyLang()};
+Promise.all([
+  fetch('/meds.json').then(r=>r.json()).then(d=>{M=d;initNames()}),
+  fetch('/api/config').then(r=>r.json()).then(c=>{cfg=c}).catch(()=>{})
+]).then(()=>{ if($('#v-meds').classList.contains('hide')===false)renderMeds(); });
+applyLang();
+</script>
+</body>
+</html>
